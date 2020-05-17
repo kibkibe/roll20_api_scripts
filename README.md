@@ -4,12 +4,12 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 
 # List
 #### 공통
-- [narrator.js](#narrator.js)
-- [get_img_url.js](#get_img_url.js)
-- [smallchat.js](#smallchat.js)
+- [narrator.js](#narratorjs)
+- [get_img_url.js](#get_img_urljs)
+- [smallchat.js](#smallchatjs)
 #### 마기카로기아 전용
-- [magicalogia_summon.js](#magicalogia_summon.js)
-- [magicalogia_match_dice.js](#magicalogia_match_dice.js)
+- [magicalogia_summon.js](#magicalogia_summonjs)
+- [magicalogia_match_dice.js](#magicalogia_match_dicejs)
 
 
 # narrator.js
