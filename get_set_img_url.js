@@ -28,7 +28,7 @@
 on("chat:message", function(msg)
 {
 if (msg.type == "api"){
-    if (msg.content.indexOf("!add ") === 0) {
+    if (msg.content.indexOf("!add") === 0) {
 	    var tok = getObj("graphic", msg.selected[0]._id);
 	    sendChat(msg.who,"/w gm "+tok.get('imgsrc'));
 	} else if (msg.content.indexOf("!replace ") === 0) {
