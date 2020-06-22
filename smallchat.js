@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 200517
+	* 200622
     
 	[ 소개 ]
     
