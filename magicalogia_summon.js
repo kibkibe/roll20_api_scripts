@@ -36,7 +36,6 @@ on("chat:message", function(msg)
 {
 if (msg.type == "api"){
     if (msg.content.indexOf("!소환") === 0) { //명령어는 변경하셔도 됩니다. 시작은 무조건 느낌표.
-	    //var anchor = findObjs({ _type: "graphic", name: "anchor"},{caseInsensitive: true})[0];
 	    var section = msg.content.split(" ");
 	    var skill = section[1];
 	    var type = section[2];
