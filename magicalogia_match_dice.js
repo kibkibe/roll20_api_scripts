@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 200517
+	* 200626
 
 	[ 소개 ]
     
@@ -10,12 +10,9 @@
 
 	[ 사용법 ]
 
-	준비1. 샘플 다이스 만들기
-	1. roll20 세션방의 전투맵 페이지에서 GM레이어를 선택합니다.
-	2. 세션에서 사용할 다이스를 GM레이어 위에 플롯합니다. 일반적으로는 1~6번과 집중방어(0번)을 포함하여 총 7개가 됩니다.
-	3. 생성한 다이스 토큰의 이름을 주사위 눈에 맞는 숫자로 설정합니다. (0~6)
-	4. 완성입니다. 이제 스크립트에서는 여기에 생성된 샘플 다이스를 바탕으로 주사위 눈을 파악하게 됩니다.
-	   실제 게임에서는 이 샘플들을 조작하지 않으므로 적당히 보이지 않는 곳에 몰아두면 됩니다.
+	준비1. 다이스 덱 만들기
+	1. roll20 세션방에서 공격-방어에 사용하는 다이스를 Card 덱으로 생성합니다.
+	2. 각 Card의 이름을 주사위 눈에 맞는 숫자로 설정합니다. 일반적으로는 1~6번과 집중방어(0번)을 포함하여 총 0~6이 됩니다.
 
 	준비2. 플롯 영역 설정하기
 	1. roll20 세션방의 전투맵 페이지에서 맵 레이어를 선택합니다.
@@ -33,7 +30,7 @@
 	1. 세션방의 대문에 해당하는 페이지에서 [설정]->[API 스크립트]를 선택해 스크립트 수정 페이지로 들어갑니다. (PRO 계정에서만 이 메뉴가 보입니다.)
 	2. New Script에 이 코드들을 복사해 붙여놓고 [Save Script]로 저장합니다. 
 	3. 페이지 아래쪽의 API Output Console에 에러 메시지가 표시되지 않는다면 정상적으로 적용된 것입니다. 세션방에서 테스트를 진행할 수 있습니다.
-	4. 설정한 스펠바운드에 맞게 주사위를 플롯한 뒤 채팅창에 '!march_dice'의 형식으로 입력해 테스트를 해봅니다.
+	4. 설정한 스펠바운드에 맞게 주사위를 플롯한 뒤 채팅창에 '!match_dice'의 형식으로 입력해 테스트를 해봅니다.
 	
 	[ 옵션 ]
 	- 원하신다면 스크립트 내의 주석을 참고해 명령어를 변경하실 수 있습니다.
@@ -42,52 +39,47 @@
 on("chat:message", function(msg)
 {
 if (msg.type == "api"){
-    if (msg.content.indexOf("!match_dice") === 0) { //명령어를 변경하실 수 있습니다.
+    if (msg.content.indexOf("!match_dice") === 0) {
+        var deck = findObjs({ _type: 'deck', name: 'Dice'})[0];
+        var models = deck.get('_currentDeck').split(',');
         var objects = findObjs({ _subtype: 'card', layer: 'objects' });
-        var models = findObjs({ _subtype: 'card', layer: 'gmlayer' });
         var areas = [];
         areas.push(findObjs({ name: 'A_delegate', layer: 'map'}));
         areas.push(findObjs({ name: 'B_delegate', layer: 'map'}));
         areas.push(findObjs({ name: 'A_observer', layer: 'map'}));
         areas.push(findObjs({ name: 'B_observer', layer: 'map'}));
-        for (var k=models.length==0?0:models.length-1;k>=0;k--) {
-            if (models[k].get('name').length > 1) {
-                models.splice(k, 1);
-            }
-        }
         var dice = [[],[],[],[]];
 	    for (var i=objects.length==0?0:objects.length-1;i>=0;i--) {
 	        var obj = objects[i];
 	        for (var j=0;j<models.length;j++) {
-	            if (obj.get('_cardid')==models[j].get('_cardid')) {
-	                obj.set('name',models[j].get('name'));
+	            if (obj.get('_cardid')==models[j]) {
+                    obj.set('name', getObj('card',models[j]).get('name'));
+                    var left = obj.get('left')+0;
+                    var top = obj.get('top')+0;
+                    var width = obj.get('width')+0;
+                    var height = obj.get('height')+0;
+                    var stop = false;
+                    for (var z=0;z<areas.length;z++) {
+                        for(var x=0;x<areas[z].length;x++) {
+                            var area = areas[z][x];
+                            if (area.get('left')-area.get('width')/2<=left-width/2 &&
+                            area.get('top')-area.get('height')/2<=top-height/2 &&
+                            area.get('top')+area.get('height')/2 >= top+height/2 &&
+                            area.get('left')+area.get('width')/2 >= left+width/2) {
+                                dice[z].push(obj.get('name'));
+                                stop = true;
+                                break;
+                            }
+                        }
+                        if (stop) {
+                            break;
+                        }
+                    }
 	                break;
 	            }
 	        }
-	        if (obj.get('name').length === 1) {
-	            var left = obj.get('left')+0;
-	            var top = obj.get('top')+0;
-	            var width = obj.get('width')+0;
-	            var height = obj.get('height')+0;
-	            var stop = false;
-	            for (var z=0;z<areas.length;z++) {
-	                for(var x=0;x<areas[z].length;x++) {
-	                    var area = areas[z][x];
-	                    if (area.get('left')-area.get('width')/2<=left-width/2 &&
-	                    area.get('top')-area.get('height')/2<=top-height/2 &&
-	                    area.get('top')+area.get('height')/2 >= top+height/2 &&
-	                    area.get('left')+area.get('width')/2 >= left+width/2) {
-	                        dice[z].push(obj.get('name'));
-	                        stop = true;
-	                        break;
-	                    }
-	                }
-	                if (stop) {
-	                    break;
-	                }
-	            }
-            }
 	    }
+        log(objects);
 	    var concentrateIdx = -1;
         
         for (var s=0;s<dice.length;s++) {
@@ -103,22 +95,22 @@ if (msg.type == "api"){
 	    
 	    var style_common = "display:inline-table;border-radius:4px;margin:1px;";
 	    var style_delegate = "width:25px;height:25px;font-size:1.2em;font-weight:bold;";
-        var style_observer = "width:20px;height:20px;font-size:0.8em;";
-        var style_unbroken = "background:#ffffff;color:#222222;border:1px solid #888888;";
-        var style_broken = "background:#f9f9f9;color:#dddddd;border:1px solid #dddddd;";
-        var style_middle = "<div style='display:table-cell;vertical-align:middle;text-align:center;'>";
+            var style_observer = "width:20px;height:20px;font-size:0.8em;";
+            var style_white = "background:#ffffff;color:#222222;border:1px solid #888888;";
+            var style_broken = "opacity:0.5;";
+            var style_middle = "<div style='display:table-cell;vertical-align:middle;text-align:center;'>";
         
 	    var result = "<div style='left:0px;right:0px;padding:0px;'>";
         if (dice[0].length > 0) {
             dice[0].forEach(die => {
-                result += "<div style='" + style_common + style_delegate + (die.includes('!') ? style_broken : style_unbroken) + "'>"
+                result += "<div style='" + style_common + style_delegate + style_white + (die.includes('!') ? style_broken : "") + "'>"
                 + style_middle + die.substring(0,1) +"</div></div>";
             });
         }
         if (dice[2].length > 0) {
             result += "<div style='margin-top:10px;'><div style='" + style_common + style_observer + "'>" + style_middle + "+</div></div>";
             dice[2].forEach(die => {
-                result += "<div style='" + style_common + style_observer + (die.includes('!') ? style_broken : style_unbroken) + "'>"
+                result += "<div style='" + style_common + style_observer +style_white + (die.includes('!') ? style_broken : "") + "'>"
                 + style_middle + die.substring(0,1) +"</div></div>";
             });
             result += "</div>";
@@ -127,7 +119,7 @@ if (msg.type == "api"){
 
         if (dice[1].length > 0) {
             dice[1].forEach(die => {
-                result += "<div style='" + style_common + style_delegate + (die.includes('!') ? style_broken : style_unbroken) + "'>"
+                result += "<div style='" + style_common + style_delegate + style_white + (die.includes('!') ? style_broken : "") + "'>"
                 + style_middle + die.substring(0,1) +"</div></div>";
             });
         }
@@ -135,7 +127,7 @@ if (msg.type == "api"){
         if (dice[3].length > 0) {
             result += "<div style='margin-top:10px;'><div style='" + style_common + style_observer + "'>" + style_middle + "+</div></div>";
             dice[3].forEach(die => {
-                result += "<div style='" + style_common + style_observer + (die.includes('!') ? style_broken : style_unbroken) + "'>"
+                result += "<div style='" + style_common + style_observer + style_white + (die.includes('!') ? style_broken : "") + "'>"
                 + style_middle + die.substring(0,1) +"</div></div>";
             });
             result += "</div>";
