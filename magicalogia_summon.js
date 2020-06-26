@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 200312
+	* 200626
 
 	[ 소개 ]
 	마도서대전 RPG 마기카로기아를 Roll20에서 ORPG로 진행할 때
