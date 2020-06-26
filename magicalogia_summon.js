@@ -43,6 +43,7 @@ if (msg.type == "api"){
 	    if (section.length > 3){
 	        block = section[3];
 	    }
+	    //덱의 이름(archetype)은 변경하셔도 좋습니다. 사용할 세션방의 덱 이름과 일치시켜 주세요.
 	    var archetype_deck = findObjs({ _type: 'deck', name: 'archetype'})[0];
 	    var archetype = findObjs({ _type: "card", _deckid: archetype_deck.get('_id'), name:type});
 	    if (archetype.length > 0) {
@@ -62,6 +63,7 @@ if (msg.type == "api"){
 								controlledby:"all",
 								bar2_value: block?parseInt(block):null,
 								bar2_max: block?parseInt(block):null,
+		    						//페이지의 이름(spellbound)은 변경하셔도 좋습니다. 사용할 세션방의 마법전 페이지 이름과 일치시켜 주세요.
 								pageid: findObjs({ _type: 'page', name: 'spellbound'})[0].get('_id'),
 								imgsrc: characterImage,
 								layer: "objects"
