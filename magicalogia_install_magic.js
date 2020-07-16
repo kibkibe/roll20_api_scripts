@@ -90,12 +90,12 @@ if (msg.content.indexOf("!장서 ") === 0) {
         	                    }
         	                }
         	                
-        	                if (!attr) {
+        	                if (!attr && repeat_id_list.length > idx - 11) {
         	                    attr = createObj('attribute', {
                                 characterid: cha_id,
                                 name: name,
                                 current: item});
-        	                } else {
+        	                } else if (attr) {
         	                    attr.set({current:item});
         	                }
         	            }
