@@ -11,16 +11,18 @@
 	1. roll20 세션방의 대문에 해당하는 페이지에서 [설정]->[API 스크립트]를 선택해 스크립트 수정 페이지로 들어갑니다. (PRO 계정에서만 이 메뉴가 보입니다.)
 	2. New Script에 이 코드들을 복사해 붙여놓고 [Save Script]로 저장합니다. 
 	3. 페이지 아래쪽의 API Output Console에 에러 메시지가 표시되지 않는다면 정상적으로 적용된 것입니다. 세션방에서 테스트를 진행할 수 있습니다.
+	4. 맵에 카드를 배치하고 마우스로 클릭하여 선택한 뒤 채팅창에 "!flip"을 입력해 카드가 뒤집히는지 확인합니다.
     
 */
 on("chat:message", function(msg)
 {
 if (msg.type == "api"){
-    if (msg.content.indexOf("!flip_dice") === 0 && msg.selected) {
+    if (msg.content.indexOf("!flip") === 0 && msg.selected) {
         for (var i=0;i<msg.selected.length;i++) {
             var obj = getObj("graphic", msg.selected[i]._id);
-            var img = obj.get('sides').split('|')[0].replace('%3A',':').replace('%3F','?').replace('max','thumb');
-            obj.set({currentSide:0,imgsrc:img});
+            var side = obj.get('currentSide')===0?1:0;
+            var img = obj.get('sides').split('|')[side].replace('%3A',':').replace('%3F','?').replace('max','thumb');
+            obj.set({currentSide:side,imgsrc:img});
         }
     }
 }});
