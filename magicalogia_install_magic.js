@@ -105,9 +105,11 @@ if (msg.content.indexOf("!장서 ") === 0) {
                     sendChat("장서", "/w gm Error occured: "+err);
                 }
     	    } else {
-                    sendChat("장서", "/w gm No character token selected: "+err);
+                    sendChat("장서", "/w gm 캐릭터 토큰이 선택되지 않았습니다.");
     	    }
-        }
+        } else {
+            sendChat("장서", "/w gm 토큰이 선택되지 않았습니다.");
+    	}
     }
 }
 });
