@@ -8,6 +8,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 - [get_set_img_url.js](#get_set_img_urljs)
 - [smallchat.js](#smallchatjs)
 - [as_switcher.js](#as_switcherjs)
+-
 #### 마기카로기아 전용
 - [magicalogia_summon.js](#magicalogia_summonjs)
 - [magicalogia_match_dice.js](#magicalogia_match_dicejs)
@@ -34,6 +35,9 @@ As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅�
 
 # as_switcher.js
 Roll20에서 채팅의 As를 임시로 손쉽게 오갈 수 있도록 도와주는 스크립트입니다.
+
+# flip_card.js
+카드 기능을 이용할 때 우클릭으로 카드를 뒤집기 어려운 상황일 경우 명령어를 이용해 뒤집을 수 있도록 지원합니다.
 
 
 # magicalogia_summon.js
