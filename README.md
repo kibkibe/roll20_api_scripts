@@ -11,6 +11,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 #### 마기카로기아 전용
 - [magicalogia_summon.js](#magicalogia_summonjs)
 - [magicalogia_match_dice.js](#magicalogia_match_dicejs)
+- [magicalogia_install_magic.js](#magicalogia_install_magicjs)
 
 
 # narrator.js
@@ -43,3 +44,7 @@ Roll20에서 채팅의 As를 임시로 손쉽게 오갈 수 있도록 도와주�
 # magicalogia_match_dice.js
 마도서대전 RPG 마기카로기아를 Roll20에서 ORPG로 진행할 때
 스펠바운드에 플롯된 다이스를 집계한 뒤 공방판정 후 남은 다이스를 채팅창에 표시하는 기능입니다.
+
+# magicalogia_install_magic.js
+마기카로기아 Roll20 캐릭터 시트의 장서 목록에 이름, 타입, 코스트, 효과, 주구 등의 항목을
+채팅창 입력 한번으로 손쉽게 입력하는 기능입니다.
