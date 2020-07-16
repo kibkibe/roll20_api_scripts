@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 200626
+	* 200716
 
 	[ 소개 ]
     
@@ -43,120 +43,110 @@ on("chat:message", function(msg)
 if (msg.type == "api"){
     if (msg.content.indexOf("!match_dice") === 0) {
         var deck = findObjs({ _type: 'deck', name: 'Dice'})[0];
-        var models = deck.get('_currentDeck').split(',');
+        var models = [];
+        for (var d=0;d<=6;d++) {
+            models.push(findObjs({ _type: "card", _deckid: deck.get('_id')}));
+        }
         var objects = findObjs({ _subtype: 'card', layer: 'objects' });
         var areas = [];
         areas.push(findObjs({ name: 'A_delegate', layer: 'map'}));
-        areas.push(findObjs({ name: 'B_delegate', layer: 'map'}));
         areas.push(findObjs({ name: 'A_observer', layer: 'map'}));
+        areas.push(findObjs({ name: 'B_delegate', layer: 'map'}));
         areas.push(findObjs({ name: 'B_observer', layer: 'map'}));
+	    var concentrateIdx = -1;
         var dice = [[],[],[],[]];
-	    for (var i=objects.length==0?0:objects.length-1;i>=0;i--) {
+	    for (var i=0;i<objects.length;i++) {
 	        var obj = objects[i];
-	        for (var j=0;j<models.length;j++) {
-	            if (obj.get('_cardid')==models[j]) {
-                    obj.set('name', getObj('card',models[j]).get('name'));
-                    var left = obj.get('left')+0;
-                    var top = obj.get('top')+0;
-                    var width = obj.get('width')+0;
-                    var height = obj.get('height')+0;
-                    var stop = false;
-                    for (var z=0;z<areas.length;z++) {
-                        for(var x=0;x<areas[z].length;x++) {
-                            var area = areas[z][x];
-                            if (area.get('left')-area.get('width')/2<=left-width/2 &&
-                            area.get('top')-area.get('height')/2<=top-height/2 &&
-                            area.get('top')+area.get('height')/2 >= top+height/2 &&
-                            area.get('left')+area.get('width')/2 >= left+width/2) {
-                                dice[z].push(obj.get('name'));
-                                stop = true;
-                                break;
+	        var model = findObjs({ _type: "card", _deckid: deck.get('_id'), _id:obj.get('_cardid')})[0];
+	        
+            if (model) {
+                obj.set('name', model.get('name'));
+                var left = obj.get('left')+0;
+                var top = obj.get('top')+0;
+                var width = obj.get('width')+0;
+                var height = obj.get('height')+0;
+                var stop = false;
+                for (var z=0;z<areas.length;z++) {
+                    for(var x=0;x<areas[z].length;x++) {
+                        var area = areas[z][x];
+                        if (area.get('left')-area.get('width')/2<=left-width/2 &&
+                        area.get('top')-area.get('height')/2<=top-height/2 &&
+                        area.get('top')+area.get('height')/2 >= top+height/2 &&
+                        area.get('left')+area.get('width')/2 >= left+width/2) {
+                            if (obj.get('name') === '0') {
+                                concentrateIdx = z;
                             }
-                        }
-                        if (stop) {
+                            dice[z].push(obj);
+                            stop = true;
                             break;
                         }
                     }
-	                break;
-	            }
-	        }
-	    }
-        log(objects);
-	    var concentrateIdx = -1;
+                    if (stop) {
+                        break;
+                    }
+                }
+            }
+	   }
         
         for (var s=0;s<dice.length;s++) {
-            dice[s].sort();
-            if (dice[s].join('').includes('0')) {
-                concentrateIdx = s;
-            }
-        }
-	    
-	    match_dice(dice[0],dice[1],concentrateIdx); //d1 vs d2
-	    match_dice(dice[0],dice[3],concentrateIdx!=0?-1:0) //d1 vs o2
-	    match_dice(dice[1],dice[2],concentrateIdx!=1?-1:0) //d2 vs o1
-	    
-	    var style_common = "display:inline-table;border-radius:4px;margin:1px;";
-	    var style_delegate = "width:25px;height:25px;font-size:1.2em;font-weight:bold;";
-            var style_observer = "width:20px;height:20px;font-size:0.8em;";
-            var style_white = "background:#ffffff;color:#222222;border:1px solid #888888;";
-            var style_broken = "opacity:0.5;";
-            var style_middle = "<div style='display:table-cell;vertical-align:middle;text-align:center;'>";
-        
-	    var result = "<div style='left:0px;right:0px;padding:0px;'>";
-        if (dice[0].length > 0) {
-            dice[0].forEach(die => {
-                result += "<div style='" + style_common + style_delegate + style_white + (die.includes('!') ? style_broken : "") + "'>"
-                + style_middle + die.substring(0,1) +"</div></div>";
-            });
-        }
-        if (dice[2].length > 0) {
-            result += "<div style='margin-top:10px;'><div style='" + style_common + style_observer + "'>" + style_middle + "+</div></div>";
-            dice[2].forEach(die => {
-                result += "<div style='" + style_common + style_observer +style_white + (die.includes('!') ? style_broken : "") + "'>"
-                + style_middle + die.substring(0,1) +"</div></div>";
-            });
-            result += "</div>";
-        }
-        result += "<div style='margin:10px 0px 10px 0px;'>vs</div>";
-
-        if (dice[1].length > 0) {
-            dice[1].forEach(die => {
-                result += "<div style='" + style_common + style_delegate + style_white + (die.includes('!') ? style_broken : "") + "'>"
-                + style_middle + die.substring(0,1) +"</div></div>";
-            });
-        }
-        
-        if (dice[3].length > 0) {
-            result += "<div style='margin-top:10px;'><div style='" + style_common + style_observer + "'>" + style_middle + "+</div></div>";
-            dice[3].forEach(die => {
-                result += "<div style='" + style_common + style_observer + style_white + (die.includes('!') ? style_broken : "") + "'>"
-                + style_middle + die.substring(0,1) +"</div></div>";
-            });
-            result += "</div>";
-        }
-        result += "</div>";
-	    
-	    sendChat("",result);
-	}
-}
-});
-function match_dice(dice1,dice2,concentrateIdx) {
             
-    for (var i=dice1.length==0?0:dice1.length-1;i>=0;i--) {
-        for (var j=dice2.length==0?0:dice2.length-1;j>=0;j--) {
-            if (dice1[i] === '0') {
-                dice1[i] += "!";
-                break;
-            } else if (dice2[j] === '0') {
-                dice2[j] += "!";
-            } else if (dice1[i]===dice2[j] && !dice1[i].includes('!') && !dice2[j].includes('!')) {
-                if (concentrateIdx != 0) {
-                    dice1[i] += "!";
-                }
-                if (concentrateIdx != 1) {
-                    dice2[j] += "!";
+            dice[s].sort(function (a, b) { 
+                return a.get('name') < b.get('name') ? -1 : a.get('name') > b.get('name') ? 1 : 0;
+            });
+        }
+        
+        var match_dice = function(dice1,dice2,concentrateIdx) {
+            
+            for (var i=0;i<dice1.length;i++) {
+                for (var j=0;j<dice2.length;j++) {
+                    if (dice1[i].get('name') === '0') {
+                        dice1[i].set('name',dice1[i].get('name')+'!');
+                        break;
+                    } else if (dice2[j].get('name') === '0') {
+                        dice2[j].set('name',dice2[j].get('name')+'!');
+                    } else if (dice1[i].get('name')===dice2[j].get('name') && !dice1[i].get('name').includes('!') && !dice2[j].get('name').includes('!')) {
+                        if (concentrateIdx != 0) {
+                        dice1[i].set('name',dice1[i].get('name')+'!');
+                        }
+                        if (concentrateIdx != 2) {
+                        dice2[j].set('name',dice2[j].get('name')+'!');
+                        }
+                    }
                 }
             }
+        }
+        
+        try {
+            
+    	    match_dice(dice[0],dice[2],concentrateIdx); //d1 vs d2
+    	    match_dice(dice[0],dice[3],concentrateIdx!=0?-1:0) //d1 vs o2
+    	    match_dice(dice[2],dice[1],concentrateIdx!=2?-1:0) //d2 vs o1
+    	    match_dice(dice[1],dice[3],-1) //o1 vs o2
+    	    
+    	    var style_delegate = "width:40px;height:40px;";
+    	    var style_observer = "width:30px;height:30px;";
+    	    var style_broken = "opacity:0.3;";
+            
+    	    var result = "";
+    	    
+    	    for (var i=0;i<4;i++) {
+                if (dice[i].length > 0) {
+                    result += "<div>";
+                    result += (i%2==0 ? "" : "+");
+                    dice[i].forEach(die => {
+                        result += "<img src='" + die.get('imgsrc') + "' style='";
+                        result += (i%2==0 ? style_delegate :  style_observer);
+                        result += (die.get('name').includes('!') ? style_broken : "") +"'>";
+                    });
+                    result += "</div>";
+                }
+                result += (i==1? "<div style='margin:10px 0px 10px 0px;'>vs</div>":"");
+    	    }
+    	    
+    	    sendChat("",result);            
+            
+        } catch(err) {
+            sendChat("matchDice", "/w gm Error occured while sorting: "+err);
         }
     }
-}
+}});
