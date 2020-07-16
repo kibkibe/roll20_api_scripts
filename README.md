@@ -8,7 +8,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 - [get_set_img_url.js](#get_set_img_urljs)
 - [smallchat.js](#smallchatjs)
 - [as_switcher.js](#as_switcherjs)
--
+- [flip_card.js](#flip_cardjs)
 #### 마기카로기아 전용
 - [magicalogia_summon.js](#magicalogia_summonjs)
 - [magicalogia_match_dice.js](#magicalogia_match_dicejs)
