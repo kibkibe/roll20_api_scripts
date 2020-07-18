@@ -43,9 +43,9 @@ on("chat:message", function(msg)
 if (msg.type == "api"){
     if (msg.content.indexOf("!match_dice") === 0) {
         var deck = findObjs({ _type: 'deck', name: 'Dice'})[0];
-        var models = [];
-        for (var d=0;d<=6;d++) {
-            models.push(findObjs({ _type: "card", _deckid: deck.get('_id')}));
+        if (!deck) {
+            sendChat("matchDice", "/w gm Dice 덱이 Card에 없습니다.");
+            return false;
         }
         var objects = findObjs({ _subtype: 'card', layer: 'objects' });
         var areas = [];
