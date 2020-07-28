@@ -17,6 +17,8 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 - [magicalogia_install_magic.js](#magicalogia_install_magicjs)
 
 
+## 룰 공통 스크립트
+
 # narrator.js
 Roll20에서 ORPG를 진행할 때 긴 나레이션을 한꺼번에 입력한 뒤
 시간차를 두고 한줄씩 출력되도록 도와주는 스크립트입니다.
@@ -45,6 +47,8 @@ Roll20에서 채팅의 As를 임시로 손쉽게 오갈 수 있도록 도와주�
 Roll20에서 캠페인 안의 jukebox 오디오들의 볼륨을 일괄적으로 최대치로 올리고
 반복재생 옵션도 활성화 시켜주는 스크립트입니다.
 
+
+## 마기카로기아 전용 스크립트
 
 # magicalogia_summon.js
 마도서대전 RPG 마기카로기아를 Roll20에서 ORPG로 진행할 때
