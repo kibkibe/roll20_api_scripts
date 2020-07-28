@@ -52,7 +52,7 @@ Roll20에서 캠페인 안의 jukebox 오디오들의 볼륨을 일괄적으로 
  
  
  
-## 마기카로기아 전용 스크립트
+# 마기카로기아 전용 스크립트
  
 ### magicalogia_summon.js
 마도서대전 RPG 마기카로기아를 Roll20에서 ORPG로 진행할 때
