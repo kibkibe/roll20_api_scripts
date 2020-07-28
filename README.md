@@ -4,9 +4,9 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 
 # List
 #### 공통
-- [narrator.js](#narratorjs)
-- [get_set_img_url.js](#get_set_img_urljs)
-- [smallchat.js](#smallchatjs)
+- [narrator.js](####narratorjs)
+- [get_set_img_url.js](####get_set_img_urljs)
+- [smallchat.js](####smallchatjs)
 - [as_switcher.js](#as_switcherjs)
 - [flip_card.js](#flip_cardjs)
 - [jukebox_amplifier.js](#jukebox_amplifierjs)
@@ -19,25 +19,25 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 
 ## 룰 공통 스크립트
 
-# narrator.js
+#### narrator.js
 Roll20에서 ORPG를 진행할 때 긴 나레이션을 한꺼번에 입력한 뒤
 시간차를 두고 한줄씩 출력되도록 도와주는 스크립트입니다.
 
 
-# get_set_img_url.js
+#### get_set_img_url.js
 이 스크립트에는 Roll20에서 ORPG를 진행하며 사용할 수 있는 2가지 기능이 포함되어 있습니다.
 - 화면에 배치된 토큰의 이미지 URL을 가져올 수 있습니다. (명령어: !add)
 - 화면에 배치된 토큰의 이미지를 변경할 수 있습니다. (명령어: !replace 이미지주소)
 
 
-# smallchat.js
+#### smallchat.js
 Roll20에서 ORPG를 진행하면서 잡담을 하고 싶을 때 문구 앞에 ! (느낌표+공백)만 추가해서 입력하면
 게임로그보다 상대적으로 덜 눈에 띄는 서식으로 채팅창에 표시 해주는 기능입니다.
 또한 플레이어와 캐릭터의 채팅을 분리하고 싶지만 As를 일일히 변경하기는 번거로운 사용자에게는
 As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅을 출력시켜 주는 기능도 있습니다.
 
 
-# as_switcher.js
+#### as_switcher.js
 Roll20에서 채팅의 As를 임시로 손쉽게 오갈 수 있도록 도와주는 스크립트입니다.
 
 # flip_card.js
