@@ -9,6 +9,8 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 - [smallchat.js](#smallchatjs)
 - [as_switcher.js](#as_switcherjs)
 - [flip_card.js](#flip_cardjs)
+- [jukebox_amplifier.js](#jukebox_amplifierjs)
+
 #### 마기카로기아 전용
 - [magicalogia_summon.js](#magicalogia_summonjs)
 - [magicalogia_match_dice.js](#magicalogia_match_dicejs)
@@ -38,6 +40,10 @@ Roll20에서 채팅의 As를 임시로 손쉽게 오갈 수 있도록 도와주�
 
 # flip_card.js
 카드 기능을 이용할 때 우클릭으로 카드를 뒤집기 어려운 상황일 경우 명령어를 이용해 뒤집을 수 있도록 지원합니다.
+
+# jukebox_amplifier.js
+Roll20에서 캠페인 안의 jukebox 오디오들의 볼륨을 일괄적으로 최대치로 올리고
+반복재생 옵션도 활성화 시켜주는 스크립트입니다.
 
 
 # magicalogia_summon.js
