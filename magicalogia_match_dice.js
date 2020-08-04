@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 200716
+	* 200804
 
 	[ 소개 ]
     
@@ -12,7 +12,8 @@
 
 	준비1. 다이스 덱 만들기
 	1. roll20 세션방에서 공격-방어에 사용하는 다이스를 Card 덱으로 생성하고 덱의 이름을 Dice로 지정합니다.
-	2. 주사위 눈에 맞게 Card를 생성하고 이름을 눈에 맞는 숫자로 설정합니다. 일반적으로는 1~6번과 집중방어(0번)을 포함하여 0~6이 됩니다.
+	2. 주사위 눈에 맞게 Card를 생성하고 이름을 눈에 맞는 숫자로 설정합니다. 일반적으로는 1~6번과 집중방어(0번)을 포함하여 0~6이 되며,
+	   이 스크립트로 랜덤플롯을 이용하고 싶으시다면 이름을 '?'(물음표)로 갖는 Card를 추가로 1개 만들어주세요.
 	3. 완성입니다. 플레이어와 GM은 화면에 다이스를 플롯할 때 이 덱을 사용합니다.
 	   또한 스크립트는 덱에 입력한 눈의 숫자를 바탕으로 화면에 놓인 주사위의 눈을 파악할 것입니다.
 
@@ -60,7 +61,14 @@ if (msg.type == "api"){
 	        var model = findObjs({ _type: "card", _deckid: deck.get('_id'), _id:obj.get('_cardid')})[0];
 	        
             if (model) {
-                obj.set('name', model.get('name'));
+                var dname = model.get('name');
+                if (dname === "?") {
+                    dname = "" + Math.floor( Math.random() * 6 + 1 );
+                    var new_model = findObjs({ _type: "card", _deckid: deck.get('_id'), name: dname})[0];
+                    log(new_model);
+                    obj.set('imgsrc',new_model.get('avatar').replace('max','thumb'));
+                }
+                obj.set('name', dname);
                 var left = obj.get('left')+0;
                 var top = obj.get('top')+0;
                 var width = obj.get('width')+0;
