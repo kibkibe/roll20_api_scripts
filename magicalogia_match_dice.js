@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 200804
+	* 200914
 
 	[ 소개 ]
     
@@ -38,6 +38,7 @@
 	[ 옵션 ]
 	- 원하신다면 스크립트 내의 주석을 참고해 명령어를 변경하실 수 있습니다.
 	- 채팅창에 명령어를 모두 입력하는 것이 불편하다면 매크로를 이용하시는 것도 추천합니다.
+	- 명령어에 'flip'을 추가하시면 뒷면이 보이도록 놓인 카드도 앞면으로 뒤집은 후에 매칭합니다. 
 */
 on("chat:message", function(msg)
 {
@@ -50,24 +51,37 @@ if (msg.type == "api"){
         }
         var objects = findObjs({ _subtype: 'card', layer: 'objects' });
         var areas = [];
-        areas.push(findObjs({ name: 'A_delegate', layer: 'map'}));
-        areas.push(findObjs({ name: 'A_observer', layer: 'map'}));
-        areas.push(findObjs({ name: 'B_delegate', layer: 'map'}));
-        areas.push(findObjs({ name: 'B_observer', layer: 'map'}));
+        if (findObjs({ name: 'A_delegate', layer: 'map'}).length > 0) {
+            areas.push(findObjs({ name: 'A_delegate', layer: 'map'}));
+        } else { sendChat("matchDice", "/w gm A_delegate 영역이  없습니다."); return false; }
+        if (findObjs({ name: 'A_observer', layer: 'map'}).length > 0) {
+            areas.push(findObjs({ name: 'A_observer', layer: 'map'}));
+        } else { sendChat("matchDice", "/w gm A_observer 영역이  없습니다."); return false; }
+        if (findObjs({ name: 'B_delegate', layer: 'map'}).length > 0) {
+            areas.push(findObjs({ name: 'B_delegate', layer: 'map'}));
+        } else { sendChat("matchDice", "/w gm B_delegate 영역이  없습니다."); return false; }
+        if (findObjs({ name: 'B_observer', layer: 'map'}).length > 0) {
+            areas.push(findObjs({ name: 'B_observer', layer: 'map'}));
+        } else { sendChat("matchDice", "/w gm B_observer 영역이  없습니다."); return false; }
 	    var concentrateIdx = -1;
         var dice = [[],[],[],[]];
+        var flip = msg.content.includes('flip');
 	    for (var i=0;i<objects.length;i++) {
 	        var obj = objects[i];
 	        var model = findObjs({ _type: "card", _deckid: deck.get('_id'), _id:obj.get('_cardid')})[0];
 	        
             if (model) {
                 var dname = model.get('name');
+                log(obj);
                 if (dname === "?") {
                     dname = "" + Math.floor( Math.random() * 6 + 1 );
                     var new_model = findObjs({ _type: "card", _deckid: deck.get('_id'), name: dname})[0];
                     log(new_model);
-                    obj.set('imgsrc',new_model.get('avatar').replace('max','thumb'));
-                }
+                    obj.set('imgsrc',new_model.get('avatar').replace('max','thumb').replace('med','thumb'));
+                } else if (flip && obj.get('currentSide')===1) {
+                    var img = obj.get('sides').split('|')[0].replace('%3A',':').replace('%3F','?').replace('max','thumb').replace('med','thumb');
+                    obj.set({currentSide:0,imgsrc:img});
+    	        }
                 obj.set('name', dname);
                 var left = obj.get('left')+0;
                 var top = obj.get('top')+0;
