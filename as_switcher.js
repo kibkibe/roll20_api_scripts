@@ -35,7 +35,6 @@ if (msg.type == "api"){
 	        sendChat("character|"+tok.get('represents'),msg.content.substring(3));
         } else {
             var master_name = "GM"; //토큰을 선택하지 않고 명령어를 사용했을 때 기본적으로 표시될 캐릭터의 이름을 기입해주세요.
-            sendChat(msg.who,"/as " + master_name + " " + msg.content.substring(3));
             var gm = findObjs({ name: master_name, type: 'character'})[0];
             if (gm) {
 	            sendChat("character|"+gm.get("_id"),msg.content.substring(3));
