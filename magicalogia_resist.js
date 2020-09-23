@@ -43,7 +43,7 @@ if (msg.type == "api"){
             ['심연','부패','배신','방황','나태','왜곡','불행','바보','악의','절망','죽음']
         ];
         var split = msg.content.split(' --');
-        if (split.length < 3) { log('noname'); return false; }
+        if (split.length < 3) { log('Error: 명령 형식이 올바르지 않습니다.'); return false; }
         var name = split[1].split(' ')[0].substring(0, split[1].split(' ')[0].length-1);
         var target = split[2];
         var target_x=-1;
@@ -62,7 +62,7 @@ if (msg.type == "api"){
                 }
             }
         }
-        if (target_x == -1 || target_y == -1 || arche_x == -1 || arche_y == -1) { log('no item'); return false; }
+        if (target_x == -1 || target_y == -1 || arche_x == -1 || arche_y == -1) { log('Error: 원형 혹은 판정할 특기의 이름이 잘못되었습니다.'); return false; }
         var res_target = 5 + Math.abs(target_x-arche_x)*2 + Math.abs(target_y-arche_y);
         if (target_x != arche_x) { res_target -= 1; }
         if (res_target > 12) { res_target = 12; }
