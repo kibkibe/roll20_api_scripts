@@ -15,6 +15,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 - [magicalogia_summon.js](#magicalogia_summonjs)
 - [magicalogia_match_dice.js](#magicalogia_match_dicejs)
 - [magicalogia_install_magic.js](#magicalogia_install_magicjs)
+- [magicalogia_resist.js](#magicalogia_resistjs)
 
 
 
@@ -67,3 +68,8 @@ Roll20에서 캠페인 안의 jukebox 오디오들의 볼륨을 일괄적으로 
 ### magicalogia_install_magic.js
 마기카로기아 Roll20 캐릭터 시트의 장서 목록에 이름, 타입, 코스트, 효과, 주구 등의 항목을
 채팅창 입력 한번으로 손쉽게 입력하는 기능입니다.
+
+
+### magicalogia_resist.js
+마도서대전 RPG 마기카로기아를 Roll20에서 ORPG로 진행할 때
+원형토큰을 이용해 주문의 저항판정 목표치를 계산해주는 스크립트입니다.
