@@ -16,6 +16,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 - [magicalogia_match_dice.js](#magicalogia_match_dicejs)
 - [magicalogia_install_magic.js](#magicalogia_install_magicjs)
 - [magicalogia_resist.js](#magicalogia_resistjs)
+- [magicalogia_battle_turn.js](#magicalogia_battle_turnjs)
 
 
 
@@ -73,3 +74,9 @@ Roll20에서 캠페인 안의 jukebox 오디오들의 볼륨을 일괄적으로 
 ### magicalogia_resist.js
 마도서대전 RPG 마기카로기아를 Roll20에서 ORPG로 진행할 때
 원형토큰을 이용해 주문의 저항판정 목표치를 계산해주는 스크립트입니다.
+
+
+### magicalogia_battle_turn.js
+마기카로기아의 마법전 진행순서를 안내할 때 채팅이나 매크로로 입력하는 대신
+토큰을 움직여서 자동으로 출력하도록 도와주는 스크립트입니다.
+
