@@ -23,7 +23,7 @@
 	GM만 조작할 수 있도록 권한을 세팅하는 것을 추천합니다.
 	
 	준비3. 인식영역 만들기
-	1. '선공소환','후공소환','선공공격','후공공격'을 이름으로 하는 토큰을 페이지의 원하는 위치에 배치하세요.
+	1. '라운드개시','선공소환','후공소환','선공공격','후공공격'을 이름으로 하는 토큰을 페이지의 원하는 위치에 배치하세요.
 	   이 중 어느 영역토큰이 turn_marker 토큰과 좌표가 겹치는지를 바탕으로 현재 마법전 진행순서를 표시합니다.
 	2. 준비를 마쳤습니다. turn_marker 토큰을 움직여서 메시지가 잘 표시되는지를 확인합니다.
 	
@@ -42,7 +42,7 @@ on("change:graphic", function(obj, prev) {
         var areas = [];
         // option1.
         // 영역을 지정하기 위해 배치한 토큰들의 이름을 입력합니다. 
-        var names = ['마소차지','선공소환','후공소환','선공공격','후공공격'];
+        var names = ['라운드개시','선공소환','후공소환','선공공격','후공공격'];
         
         for (var i=0;i<names.length;i++) {
             if (findObjs({ name: names[i]}).length > 0) {
@@ -78,7 +78,7 @@ on("change:graphic", function(obj, prev) {
             switch (turn) {
                 // option3.
                 // 선후/턴에 따라 표시될 메시지를 지정합니다.
-                case 0: text = "개시마소 차지"; break;
+                case 0: text = "라운드 개시"; break;
                 case 1: text = "선공 소환"; break;
                 case 2: text = "후공 소환"; break;
                 case 3: text = "선공 공격"; break;
