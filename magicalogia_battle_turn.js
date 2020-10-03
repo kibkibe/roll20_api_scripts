@@ -42,7 +42,7 @@ on("change:graphic", function(obj, prev) {
         var areas = [];
         // option1.
         // 영역을 지정하기 위해 gmlayer에 배치한 토큰들의 이름을 입력합니다. 
-        var names = ['선공소환','후공소환','선공공격','후공공격'];
+        var names = ['마소차지','선공소환','후공소환','선공공격','후공공격'];
         
         for (var i=0;i<names.length;i++) {
             if (findObjs({ name: names[i]}).length > 0) {
@@ -78,10 +78,11 @@ on("change:graphic", function(obj, prev) {
             switch (turn) {
                 // option3.
                 // 선후/턴에 따라 표시될 메시지를 지정합니다.
-                case 0: text = "선공 소환+마소차지"; break;
-                case 1: text = "후공 소환+마소차지"; break;
-                case 2: text = "선공 공격"; break;
-                case 3: text = "후공 공격"; obj.set('bar1_value', Number(obj.get('bar1_value')) + 1); break;
+                case 0: text = "개시마소 차지"; break;
+                case 1: text = "선공 소환"; break;
+                case 2: text = "후공 소환"; break;
+                case 3: text = "선공 공격"; break;
+                case 4: text = "후공 공격"; obj.set('bar1_value', Number(obj.get('bar1_value')) + 1); break;
                 default: sendChat("turnover", "/w gm " + z + "번째 영역이 없습니다. 배치 혹은 토큰이름 설정을 확인하세요."); return;
             }
             sendChat("", format.replace('{round}',round).replace('{text}',text));
