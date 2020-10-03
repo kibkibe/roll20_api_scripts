@@ -41,7 +41,7 @@ on("change:graphic", function(obj, prev) {
     if (obj.get('name') == 'turn_marker') {
         var areas = [];
         // option1.
-        // 영역을 지정하기 위해 gmlayer에 배치한 토큰들의 이름을 입력합니다. 
+        // 영역을 지정하기 위해 배치한 토큰들의 이름을 입력합니다. 
         var names = ['마소차지','선공소환','후공소환','선공공격','후공공격'];
         
         for (var i=0;i<names.length;i++) {
