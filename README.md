@@ -19,8 +19,8 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 - [magicalogia_resist.js](#magicalogia_resistjs)
 - [magicalogia_battle_turn.js](#magicalogia_battle_turnjs)   
    
-
-
+   
+   
 # 룰 공통 스크립트
    
 ### narrator.js
