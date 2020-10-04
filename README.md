@@ -17,7 +17,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 - [magicalogia_match_dice.js](#magicalogia_match_dicejs)
 - [magicalogia_install_magic.js](#magicalogia_install_magicjs)
 - [magicalogia_resist.js](#magicalogia_resistjs)
-- [magicalogia_battle_turn.js](#magicalogia_battle_turnjs)
+- [magicalogia_battle_turn.js](#magicalogia_battle_turnjs)   
    
 
 
