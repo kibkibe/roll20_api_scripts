@@ -7,6 +7,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 - [narrator.js](#narratorjs)
 - [get_set_img_url.js](#get_set_img_urljs)
 - [smallchat.js](#smallchatjs)
+- [smallchat_split.js](#smallchatsplitjs)
 - [as_switcher.js](#as_switcherjs)
 - [flip_card.js](#flip_cardjs)
 - [jukebox_amplifier.js](#jukebox_amplifierjs)
@@ -38,6 +39,10 @@ Roll20에서 ORPG를 진행하면서 잡담을 하고 싶을 때 문구 앞에 !
 게임로그보다 상대적으로 덜 눈에 띄는 서식으로 채팅창에 표시 해주는 기능입니다.
 또한 플레이어와 캐릭터의 채팅을 분리하고 싶지만 As를 일일히 변경하기는 번거로운 사용자에게는
 As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅을 출력시켜 주는 기능도 있습니다.
+
+### smallchat_split.js
+Roll20에서 ORPG를 진행하면서 게임진행과 화면을 분리하여 잡담을 하고 싶을 때
+화면내의 영역에 잡담을 따로 표시하고 사담로그를 별도의 핸드아웃에 저장해주는 기능입니다.
 
 
 ### as_switcher.js
