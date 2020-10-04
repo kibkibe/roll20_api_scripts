@@ -7,7 +7,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 - [narrator.js](#narratorjs)
 - [get_set_img_url.js](#get_set_img_urljs)
 - [smallchat.js](#smallchatjs)
-- [smallchat_split.js](#smallchatsplitjs)
+- [smallchat_split.js](#smallchat_splitjs)
 - [as_switcher.js](#as_switcherjs)
 - [flip_card.js](#flip_cardjs)
 - [jukebox_amplifier.js](#jukebox_amplifierjs)
