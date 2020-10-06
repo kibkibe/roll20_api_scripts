@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 200622
+	* 2001006
     
 	[ 소개 ]
     
@@ -23,11 +23,15 @@ on("chat:message", function(msg)
 {
 if (msg.type == "api"){
     if (msg.content.indexOf("! ") === 0) {
-        if (true) { //괄호 안에 true를 입력하시면 플레이어 As로, false를 입력하시면 선택되어 있는 As를 유지한 채 잡담을 합니다.
-            sendChat("player|"+msg.playerid,"<span style='color:#aaaaaa'>"+msg.content.substring(2, msg.content.length)+"</span>");
-        } else {
-            sendChat(msg.who,"<span style='color:#aaaaaa'>"+msg.content.substring(2, msg.content.length)+"</span>");
-        }
+	    try {
+		    if (true) { //괄호 안에 true를 입력하시면 플레이어 As로, false를 입력하시면 선택되어 있는 As를 유지한 채 잡담을 합니다.
+			    sendChat("player|"+msg.playerid,"<span style='color:#aaaaaa'>"+msg.content.substring(2, msg.content.length)+"</span>");
+		    } else {
+			    sendChat(msg.who,"<span style='color:#aaaaaa'>"+msg.content.substring(2, msg.content.length)+"</span>");
+		    }
+	    } catch (error) {
+		    log(error);
+	    }
     }
 }
 });
