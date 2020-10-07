@@ -11,6 +11,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 - [as_switcher.js](#as_switcherjs)
 - [flip_card.js](#flip_cardjs)
 - [jukebox_amplifier.js](#jukebox_amplifierjs)
+- [choice.js](#choicejs)
 
 #### 마기카로기아 전용
 - [magicalogia_summon.js](#magicalogia_summonjs)
@@ -41,12 +42,12 @@ Roll20에서 ORPG를 진행하면서 잡담을 하고 싶을 때 문구 앞에 !
 As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅을 출력시켜 주는 기능도 있습니다.
 
 ### smallchat_split.js
-Roll20에서 ORPG를 진행하면서 게임진행과 화면을 분리하여 잡담을 하고 싶을 때
-화면내의 영역에 잡담을 따로 표시하고 사담로그를 별도의 핸드아웃에 저장해주는 기능입니다.
+게임진행과 화면을 분리하여 잡담을 하고 싶을 때 화면내의 영역에 잡담을 따로 표시하고
+사담로그를 별도의 핸드아웃에 저장해주는 기능입니다.
 
 
 ### as_switcher.js
-Roll20에서 채팅의 As를 임시로 손쉽게 오갈 수 있도록 도와주는 스크립트입니다.
+채팅의 As를 임시로 손쉽게 오갈 수 있도록 도와주는 스크립트입니다.
 
 
 ### flip_card.js
@@ -54,8 +55,12 @@ Roll20에서 채팅의 As를 임시로 손쉽게 오갈 수 있도록 도와주�
 
 
 ### jukebox_amplifier.js
-Roll20에서 캠페인 안의 jukebox 오디오들의 볼륨을 일괄적으로 최대치로 올리고
+캠페인 안의 jukebox 오디오들의 볼륨을 일괄적으로 최대치로 올리고
 반복재생 옵션도 활성화 시켜주는 스크립트입니다.
+
+
+### choice.js
+여러가지 선택지를 한번에 입력한 뒤 랜덤하게 하나를 뽑을 수 있는 명령어입니다.
  
  
     
