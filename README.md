@@ -35,18 +35,18 @@ Roll20에서 ORPG를 진행할 때 긴 나레이션을 한꺼번에 입력한 �
 - 화면에 배치된 토큰의 이미지를 변경할 수 있습니다. (명령어: !replace 이미지주소)
 
 
-### smallchat.js
+### [smallchat.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/smallchat.js)
 Roll20에서 ORPG를 진행하면서 잡담을 하고 싶을 때 문구 앞에 ! (느낌표+공백)만 추가해서 입력하면
 게임로그보다 상대적으로 덜 눈에 띄는 서식으로 채팅창에 표시 해주는 기능입니다.
 또한 플레이어와 캐릭터의 채팅을 분리하고 싶지만 As를 일일히 변경하기는 번거로운 사용자에게는
 As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅을 출력시켜 주는 기능도 있습니다.
 
-### smallchat_split.js
+### [smallchat_split.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/smallchat_split.js)
 게임진행과 화면을 분리하여 잡담을 하고 싶을 때 화면내의 영역에 잡담을 따로 표시하고
 사담로그를 별도의 핸드아웃에 저장해주는 기능입니다.
 
 
-### as_switcher.js
+### [as_switcher.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/as_switcher.js)
 채팅의 As를 임시로 손쉽게 오갈 수 있도록 도와주는 스크립트입니다.
 
 
