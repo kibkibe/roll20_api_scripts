@@ -8,7 +8,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 
 
 
-# List
+## List
 #### 공통
 - [narrator.js](#narratorjs)
 - [get_set_img_url.js](#get_set_img_urljs)
@@ -32,7 +32,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 
 
 
-# 룰 공통 스크립트
+## 룰 공통 스크립트
    
 ### - [narrator.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/narrator.js)
 Roll20에서 ORPG를 진행할 때 긴 나레이션을 한꺼번에 입력한 뒤
@@ -110,7 +110,7 @@ As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅�
 
 
 
-# 마기카로기아 전용 스크립트
+## 마기카로기아 전용 스크립트
  
 ### - [magicalogia_summon.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/magicalogia_summon.js)
 마도서대전 RPG 마기카로기아를 Roll20에서 ORPG로 진행할 때
