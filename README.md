@@ -24,7 +24,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
    
 # 룰 공통 스크립트
    
-### * [narrator.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/narrator.js)
+### - [narrator.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/narrator.js)
 Roll20에서 ORPG를 진행할 때 긴 나레이션을 한꺼번에 입력한 뒤
 
 
@@ -33,7 +33,7 @@ Roll20에서 ORPG를 진행할 때 긴 나레이션을 한꺼번에 입력한 �
 
 
 
-### * [get_set_img_url.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/get_set_img_url.js)
+### - [get_set_img_url.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/get_set_img_url.js)
 이 스크립트에는 Roll20에서 ORPG를 진행하며 사용할 수 있는 2가지 기능이 포함되어 있습니다.
 
 
