@@ -46,7 +46,7 @@ Roll20에서 ORPG를 진행할 때 긴 나레이션을 한꺼번에 입력한 �
 
 
 
-### [smallchat.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/smallchat.js)
+### - [smallchat.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/smallchat.js)
 Roll20에서 ORPG를 진행하면서 잡담을 하고 싶을 때 문구 앞에 ! (느낌표+공백)만 추가해서 입력하면
 
 
@@ -63,7 +63,7 @@ As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅�
 
 
 
-### [smallchat_split.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/smallchat_split.js)
+### - [smallchat_split.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/smallchat_split.js)
 게임진행과 화면을 분리하여 잡담을 하고 싶을 때 화면내의 영역에 잡담을 따로 표시하고
 
 
@@ -72,17 +72,17 @@ As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅�
 
 
 
-### [as_switcher.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/as_switcher.js)
+### - [as_switcher.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/as_switcher.js)
 채팅의 As를 임시로 손쉽게 오갈 수 있도록 도와주는 스크립트입니다.
 
 
 
-### [flip_card.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/flip_card.js)
+### - [flip_card.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/flip_card.js)
 카드 기능을 이용할 때 우클릭으로 카드를 뒤집기 어려운 상황일 경우 명령어를 이용해 뒤집을 수 있도록 지원합니다.
 
 
 
-### [jukebox_amplifier.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/jukebox_amplifier.js)
+### - [jukebox_amplifier.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/jukebox_amplifier.js)
 캠페인 안의 jukebox 오디오들의 볼륨을 일괄적으로 최대치로 올리고
 
 
@@ -98,7 +98,7 @@ As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅�
     
 # 마기카로기아 전용 스크립트
  
-### [magicalogia_summon.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/magicalogia_summon.js)
+### - [magicalogia_summon.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/magicalogia_summon.js)
 마도서대전 RPG 마기카로기아를 Roll20에서 ORPG로 진행할 때
 
 
@@ -107,7 +107,7 @@ As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅�
  
  
  
-### [magicalogia_match_dice.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/magicalogia_match_dice.js)
+### - [magicalogia_match_dice.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/magicalogia_match_dice.js)
 마도서대전 RPG 마기카로기아를 Roll20에서 ORPG로 진행할 때
 
 
@@ -116,7 +116,7 @@ As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅�
 
 
 
-### [magicalogia_install_magic.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/magicalogia_install_magic.js)
+### - [magicalogia_install_magic.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/magicalogia_install_magic.js)
 마기카로기아 Roll20 캐릭터 시트의 장서 목록에 이름, 타입, 코스트, 효과, 주구 등의 항목을
 
 
@@ -125,7 +125,7 @@ As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅�
 
 
 
-### [magicalogia_resist.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/magicalogia_resist.js)
+### - [magicalogia_resist.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/magicalogia_resist.js)
 마도서대전 RPG 마기카로기아를 Roll20에서 ORPG로 진행할 때
 
 
@@ -134,7 +134,7 @@ As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅�
 
 
 
-### [magicalogia_battle_turn.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/magicalogia_battle_turn.js)
+### - [magicalogia_battle_turn.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/magicalogia_battle_turn.js)
 마기카로기아의 마법전 진행순서를 안내할 때 채팅이나 매크로로 입력하는 대신
 
 
