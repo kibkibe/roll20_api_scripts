@@ -54,7 +54,7 @@ if (msg.type == "api"){
         var onair_lines = 15;
         // 핸드아웃에 저장되는 채팅로그에 플레이어의 고유색상을 적용할지의 여부를 설정합니다
         // 0: 사용안함 / 1: 이름만 컬러 / 2: 채팅까지 컬러
-        var use_personal_color = 2;
+        var use_personal_color = 1;
         // 핸드아웃에 표시하는 채팅시각의 표준시간대를 지정합니다. 기본값은 KST(UTC+9)입니다.
         var timezone = 9;
         // (고급설정) 각 열과 자간이 글씨크기 대비 얼마만큼의 픽셀을 차지하는지의 비율을 지정합니다.
@@ -103,7 +103,7 @@ if (msg.type == "api"){
                     font_family: 'Arial',
                     text: '',
                     font_size: font_size,
-                    color: "rgb(255, 255, 255)"
+                    color: color
                 });
             }
             var str = player.get('_displayname') + ": " + msg.content.substring(2);
