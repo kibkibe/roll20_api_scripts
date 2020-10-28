@@ -26,8 +26,9 @@ if (msg.type == "api"){
     if (msg.content.indexOf("! ") === 0) {
         //괄호 안에 true를 입력하시면 플레이어 As로, false를 입력하시면 선택되어 있는 As를 유지한 채 잡담을 합니다.
         let show_player_name = true;
+        let style = "color:#aaaaaa";
         try {
-            sendChat((show_player_name? "player|"+msg.playerid : msg.who),"<span style='color:#aaaaaa'>"+msg.content.substring(2, msg.content.length)+"</span>",null,{noarchive:false});
+            sendChat((show_player_name? "player|"+msg.playerid : msg.who),"<span style='" + style + "'>"+msg.content.substring(2, msg.content.length)+"</span>",null,{noarchive:false});
         } catch (error) {
             log(error);
         }
