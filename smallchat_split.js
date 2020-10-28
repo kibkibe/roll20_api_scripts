@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 201005
+	* 201028
     
 	[ 소개 ]
     
@@ -39,7 +39,7 @@ on("chat:message", function(msg)
 {
 if (msg.type == "api"){
     if (msg.content.indexOf("! ") === 0) {
-        
+        try {
         // option
         // 채팅창의 글씨크기를 지정합니다.
         var font_size = 14;
@@ -177,6 +177,9 @@ if (msg.type == "api"){
                 state.smallchatlog.splice(0,1);
             }
         });
+	} catch (error) {
+		log(error);
+	}
     }
 }
 });
