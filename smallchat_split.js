@@ -30,6 +30,7 @@
 	2-2. 'chat_bg' 토큰을 설정하지 않았을 경우 실시간 채팅용 핸드아웃이 자동으로 생성되었는지 확인합니다.
 	3. 저널에 잡담로그를 저장하는 핸드아웃이 자동으로 생성되었는지 확인합니다.
 */
+// 여기부터 복사해서 붙여넣으세요.
 on('ready', function() {
     if (!state.smallchatlog) state.smallchatlog = [];
     if (!state.smallchatonair) state.smallchatonair = [];
@@ -179,3 +180,4 @@ if (msg.type == "api"){
     }
 }
 });
+// 여기까지 복사해서 붙여넣으세요.
