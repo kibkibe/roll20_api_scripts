@@ -46,6 +46,8 @@ if (msg.type == "api"){
         var color = "rgb(255, 255, 255)";
         // 채팅창의 상하좌우 여백을 설정합니다.
         var margin = 5;
+        // 채팅로그에 플레이어/PC 중 어느쪽 이름을 표시할지 지정합니다. (true:플레이어/false:PC)
+        var show_player_name = false;
         // 잡담 내역을 저장할 핸드아웃의 이름을 지정합니다.
         var logname = '(잡담로그)';
         // 세션화면 안에 채팅창을 만들지 않고자 할 경우 실시간 채팅을 표시할 별도의 핸드아웃의 이름을 지정합니다.
@@ -141,7 +143,7 @@ if (msg.type == "api"){
                 + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
                 + "</span>" + "<br>"
                 + (use_personal_color!=0?("<span style='color:"+player.get('color')+";'>"):"") + "<b>"
-                + player.get('_displayname') + "</b>" + (use_personal_color===1?"</span>":"") + ": "
+                + (show_player_name ? player.get('_displayname') : msg.who) + "</b>" + (use_personal_color===1?"</span>":"") + ": "
                 + msg.content.substring(2) + (use_personal_color===2?"</span>":"");
         if (!bg) {
             var oa = findObjs({ _type: 'handout', name:onair_name});
