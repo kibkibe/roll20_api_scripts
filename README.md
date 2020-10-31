@@ -23,6 +23,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 - [magicalogia_install_magic.js](#magicalogia_install_magicjs)
 - [magicalogia_resist.js](#magicalogia_resistjs)
 - [magicalogia_battle_turn.js](#magicalogia_battle_turnjs)   
+- [magicalogia_mana_token.js](#magicalogia_mana_tokenjs)   
    
    
    
@@ -153,3 +154,7 @@ As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅�
 
 토큰을 움직여서 자동으로 출력하도록 도와주는 스크립트입니다.
 
+
+
+### - [magicalogia_mana_token.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/magicalogia_mana_token.js)
+저널에서 캐릭터의 장서 설정을 읽어와 자동으로 마소차지용 토큰을 생성해주는 스크립트입니다.
