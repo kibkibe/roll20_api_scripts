@@ -19,10 +19,11 @@
 	5. 페이지 아래쪽의 API Output Console에 에러 메시지가 표시되지 않는다면 정상적으로 적용된 것입니다. 세션방에서 테스트를 진행할 수 있습니다.
 	6. 채팅창에 '! 하고싶은말'의 형식으로 입력해 테스트를 해봅니다.
 */
-// 여기부터 복사해서 붙여넣으세요.
+// 코드 시작
 on("chat:message", function(msg)
 {
 if (msg.type == "api"){
+	//코드 고유구문 시작
     if (msg.content.indexOf("! ") === 0) {
         //괄호 안에 true를 입력하시면 플레이어 As로, false를 입력하시면 선택되어 있는 As를 유지한 채 잡담을 합니다.
         let show_player_name = true;
@@ -33,6 +34,7 @@ if (msg.type == "api"){
             log(error);
         }
     }
+	//코드 고유구문 끝
 }
 });
-// 여기까지 복사해서 붙여넣으세요.
+// 코드 끝
