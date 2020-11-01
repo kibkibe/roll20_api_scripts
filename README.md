@@ -16,6 +16,7 @@ Roll20에서 사용하기 위해 개인적으로 만든 API 스크립트를 백�
 - [flip_card.js](#flip_cardjs)
 - [jukebox_amplifier.js](#jukebox_amplifierjs)
 - [choice.js](#choicejs)
+- [temporary_chat.js](#temporary_chatjs)
 
 #### 마기카로기아 전용
 - [magicalogia_summon.js](#magicalogia_summonjs)
@@ -102,6 +103,11 @@ As를 캐릭터로 둔 채로 사용해도 플레이어의 프로필로 채팅�
 
 ### [choice.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/choice.js)
 여러가지 선택지를 한번에 입력한 뒤 랜덤하게 하나를 뽑을 수 있는 명령어입니다.
+
+
+
+### [temporary_chat.js](https://github.com/kibkibe/roll20_api_scripts/blob/master/temporary_chat.js)
+게임 내 채팅화면에는 보이지만 채팅로그에는 남지 않게 메시지를 보낼 수 있도록 도와주는 스크립트입니다.
 
 
 
