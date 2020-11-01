@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 201028
+	* 201101
     
 	[ 소개 ]
     
@@ -19,11 +19,10 @@
 	5. 페이지 아래쪽의 API Output Console에 에러 메시지가 표시되지 않는다면 정상적으로 적용된 것입니다. 세션방에서 테스트를 진행할 수 있습니다.
 	6. 채팅창에 '! 하고싶은말'의 형식으로 입력해 테스트를 해봅니다.
 */
-// 코드 시작
+// (smallchat.js) *** 코드 시작 ***
 on("chat:message", function(msg)
 {
 if (msg.type == "api"){
-	//코드 고유구문 시작
     if (msg.content.indexOf("! ") === 0) {
         //괄호 안에 true를 입력하시면 플레이어 As로, false를 입력하시면 선택되어 있는 As를 유지한 채 잡담을 합니다.
         let show_player_name = true;
@@ -31,10 +30,9 @@ if (msg.type == "api"){
         try {
             sendChat((show_player_name? "player|"+msg.playerid : msg.who),"<span style='" + style + "'>"+msg.content.substring(2, msg.content.length)+"</span>",null,{noarchive:false});
         } catch (error) {
-            log(error);
+			sendChat('error','/w GM '+err,null,{noarchive:true});
         }
     }
-	//코드 고유구문 끝
 }
 });
-// 코드 끝
+// (smallchat.js) *** 코드 종료 ***

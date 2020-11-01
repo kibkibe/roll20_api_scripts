@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 200729
+	* 201101
   
 	[ 소개 ]
 	Roll20에서 캠페인 안의 jukebox 오디오들의 볼륨을 일괄적으로 최대치로 올리고
@@ -17,19 +17,25 @@
 	2. '!amplify loop'를 입력하면 볼륨과 함께 반복재생 옵션도 변경됩니다.
 	
 */
+// (jukebox_amplifier.js) *** 코드 시작 ***
 on("chat:message", function(msg)
 {
 if (msg.type == "api"){
     if (msg.content.indexOf("!amplify") === 0) { //명령어를 변경하실 수 있습니다.
-        var jukebox = findObjs({_type: "jukeboxtrack"});
-        for (var i=0;i<jukebox.length;i++) {
-            var obj = jukebox[i];
-    	    if(msg.content.includes("loop")){
-                obj.set({volume: 100, loop:true});
-    	    } else {
-                obj.set({volume: 100});
-    	    }
-        }
+		try {
+			var jukebox = findObjs({_type: "jukeboxtrack"});
+			for (var i=0;i<jukebox.length;i++) {
+				var obj = jukebox[i];
+				if(msg.content.includes("loop")){
+					obj.set({volume: 100, loop:true});
+				} else {
+					obj.set({volume: 100});
+				}
+			}
+		} catch(err){
+			sendchat("error","/w gm "+err,null,{noarchive:true});
+		}
     }
 }
 });
+// (jukebox_amplifier.js) *** 코드 종료 ***

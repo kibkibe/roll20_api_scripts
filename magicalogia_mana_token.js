@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 201031
+	* 201101
     
 	[ 소개 ]
   	저널에서 캐릭터의 장서 설정을 읽어와 자동으로 마소차지용 토큰을 생성해주는 스크립트입니다.
@@ -38,7 +38,7 @@
   	ex: 토큰에 장서 이름이 보이고 차지상태도 토큰 상단의 Bar에 숫자로 보이도록 생성
       		!장서토큰 --캐릭터 --이름 --바
 */
-// 여기부터 복사해서 붙여넣으세요.
+// (magicalogia_mana_token.js) *** 코드 시작 ***
 on("chat:message", function(msg){
     if (msg.type == "api"){
     if (msg.content.indexOf("!장서토큰") === 0) {
@@ -54,12 +54,12 @@ on("chat:message", function(msg){
             
             var split = msg.content.split(' --');
             if (split.length < 2) {
-                sendChat('ERROR','/w GM magicalogia_token_generator.js / 장서토큰을 생성할 캐릭터 이름이 지정되지 않았습니다.');
+                sendChat('ERROR','/w GM magicalogia_token_generator.js / 장서토큰을 생성할 캐릭터 이름이 지정되지 않았습니다.',null,{noarchive:true});
                 return;
             }
             var cha = findObjs({name:split[1], type:'character'});
             if (cha.length < 1) {
-                sendChat('ERROR','/w GM 이름이 ' + split[1] + '인 캐릭터가 저널에 없습니다.');
+                sendChat('ERROR','/w GM 이름이 ' + split[1] + '인 캐릭터가 저널에 없습니다.',null,{noarchive:true});
                 return;
             } else {
                 cha = cha[0];
@@ -164,9 +164,9 @@ on("chat:message", function(msg){
             }
             
         } catch (err) {
-            sendChat('ERROR','/w GM '+err);
+            sendChat('error','/w GM '+err,null,{noarchive:true});
         }
     }
 }
 });
-// 여기까지 복사해서 붙여넣으세요.
+// (magicalogia_mana_token.js) *** 코드 종료 ***

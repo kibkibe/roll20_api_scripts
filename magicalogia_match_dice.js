@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 200914
+	* 201101
 
 	[ 소개 ]
     
@@ -40,76 +40,79 @@
 	- 채팅창에 명령어를 모두 입력하는 것이 불편하다면 매크로를 이용하시는 것도 추천합니다.
 	- '!match_dice flip'과 같이 명령어에 'flip'을 추가하시면 뒷면이 보이도록 놓인 카드도 앞면으로 뒤집은 후에 매칭합니다. 
 */
+// (magicalogia_match_dice.js) *** 코드 시작 ***
 on("chat:message", function(msg)
 {
 if (msg.type == "api"){
     if (msg.content.indexOf("!match_dice") === 0) {
-        var deck = findObjs({ _type: 'deck', name: 'Dice'})[0];
-        if (!deck) {
-            sendChat("matchDice", "/w gm Dice 덱이 Card에 없습니다.");
-            return false;
-        }
-        var objects = findObjs({ _subtype: 'card', layer: 'objects' });
-        var areas = [];
-        if (findObjs({ name: 'A_delegate', layer: 'map'}).length > 0) {
-            areas.push(findObjs({ name: 'A_delegate', layer: 'map'}));
-        } else { sendChat("matchDice", "/w gm A_delegate 영역이  없습니다."); return false; }
-        if (findObjs({ name: 'A_observer', layer: 'map'}).length > 0) {
-            areas.push(findObjs({ name: 'A_observer', layer: 'map'}));
-        } else { sendChat("matchDice", "/w gm A_observer 영역이  없습니다."); return false; }
-        if (findObjs({ name: 'B_delegate', layer: 'map'}).length > 0) {
-            areas.push(findObjs({ name: 'B_delegate', layer: 'map'}));
-        } else { sendChat("matchDice", "/w gm B_delegate 영역이  없습니다."); return false; }
-        if (findObjs({ name: 'B_observer', layer: 'map'}).length > 0) {
-            areas.push(findObjs({ name: 'B_observer', layer: 'map'}));
-        } else { sendChat("matchDice", "/w gm B_observer 영역이  없습니다."); return false; }
-	    var concentrateIdx = -1;
-        var dice = [[],[],[],[]];
-        var flip = msg.content.includes('flip');
-	    for (var i=0;i<objects.length;i++) {
-	        var obj = objects[i];
-	        var model = findObjs({ _type: "card", _deckid: deck.get('_id'), _id:obj.get('_cardid')})[0];
-	        
-            if (model) {
-                var dname = model.get('name');
-                log(obj);
-                if (dname === "?") {
-                    dname = "" + Math.floor( Math.random() * 6 + 1 );
-                    var new_model = findObjs({ _type: "card", _deckid: deck.get('_id'), name: dname})[0];
-                    log(new_model);
-                    obj.set('imgsrc',new_model.get('avatar').replace('max','thumb').replace('med','thumb'));
-                } else if (flip && obj.get('currentSide')===1) {
-                    var img = obj.get('sides').split('|')[0].replace('%3A',':').replace('%3F','?').replace('max','thumb').replace('med','thumb');
-                    obj.set({currentSide:0,imgsrc:img});
-    	        }
-                obj.set('name', dname);
-                var left = obj.get('left')+0;
-                var top = obj.get('top')+0;
-                var width = obj.get('width')+0;
-                var height = obj.get('height')+0;
-                var stop = false;
-                for (var z=0;z<areas.length;z++) {
-                    for(var x=0;x<areas[z].length;x++) {
-                        var area = areas[z][x];
-                        if (area.get('left')-area.get('width')/2<=left-width/2 &&
-                        area.get('top')-area.get('height')/2<=top-height/2 &&
-                        area.get('top')+area.get('height')/2 >= top+height/2 &&
-                        area.get('left')+area.get('width')/2 >= left+width/2) {
-                            if (obj.get('name') === '0') {
-                                concentrateIdx = z;
+        try {
+            var deck = findObjs({ _type: 'deck', name: 'Dice'})[0];
+            if (!deck) {
+                sendChat("matchDice", "/w gm Dice 덱이 Card에 없습니다.");
+                return false;
+            }
+            var objects = findObjs({ _subtype: 'card', layer: 'objects' });
+            var areas = [];
+            if (findObjs({ name: 'A_delegate', layer: 'map'}).length > 0) {
+                areas.push(findObjs({ name: 'A_delegate', layer: 'map'}));
+            } else { sendChat("matchDice", "/w gm A_delegate 영역이  없습니다."); return false; }
+            if (findObjs({ name: 'A_observer', layer: 'map'}).length > 0) {
+                areas.push(findObjs({ name: 'A_observer', layer: 'map'}));
+            } else { sendChat("matchDice", "/w gm A_observer 영역이  없습니다."); return false; }
+            if (findObjs({ name: 'B_delegate', layer: 'map'}).length > 0) {
+                areas.push(findObjs({ name: 'B_delegate', layer: 'map'}));
+            } else { sendChat("matchDice", "/w gm B_delegate 영역이  없습니다."); return false; }
+            if (findObjs({ name: 'B_observer', layer: 'map'}).length > 0) {
+                areas.push(findObjs({ name: 'B_observer', layer: 'map'}));
+            } else { sendChat("matchDice", "/w gm B_observer 영역이  없습니다."); return false; }
+            var concentrateIdx = -1;
+            var dice = [[],[],[],[]];
+            var flip = msg.content.includes('flip');
+
+            for (var i=0;i<objects.length;i++) {
+                var obj = objects[i];
+                var model = findObjs({ _type: "card", _deckid: deck.get('_id'), _id:obj.get('_cardid')})[0];
+                
+                if (model) {
+                    var dname = model.get('name');
+                    log(obj);
+                    if (dname === "?") {
+                        dname = "" + Math.floor( Math.random() * 6 + 1 );
+                        var new_model = findObjs({ _type: "card", _deckid: deck.get('_id'), name: dname})[0];
+                        log(new_model);
+                        obj.set('imgsrc',new_model.get('avatar').replace('max','thumb').replace('med','thumb'));
+                    } else if (flip && obj.get('currentSide')===1) {
+                        var img = obj.get('sides').split('|')[0].replace('%3A',':').replace('%3F','?').replace('max','thumb').replace('med','thumb');
+                        obj.set({currentSide:0,imgsrc:img});
+                    }
+                    obj.set('name', dname);
+                    var left = obj.get('left')+0;
+                    var top = obj.get('top')+0;
+                    var width = obj.get('width')+0;
+                    var height = obj.get('height')+0;
+                    var stop = false;
+                    for (var z=0;z<areas.length;z++) {
+                        for(var x=0;x<areas[z].length;x++) {
+                            var area = areas[z][x];
+                            if (area.get('left')-area.get('width')/2<=left-width/2 &&
+                            area.get('top')-area.get('height')/2<=top-height/2 &&
+                            area.get('top')+area.get('height')/2 >= top+height/2 &&
+                            area.get('left')+area.get('width')/2 >= left+width/2) {
+                                if (obj.get('name') === '0') {
+                                    concentrateIdx = z;
+                                }
+                                dice[z].push(obj);
+                                stop = true;
+                                break;
                             }
-                            dice[z].push(obj);
-                            stop = true;
+                        }
+                        if (stop) {
                             break;
                         }
                     }
-                    if (stop) {
-                        break;
-                    }
                 }
-            }
-	   }
-        
+        }
+            
         for (var s=0;s<dice.length;s++) {
             
             dice[s].sort(function (a, b) { 
@@ -137,38 +140,36 @@ if (msg.type == "api"){
                 }
             }
         }
+            
+        match_dice(dice[0],dice[2],concentrateIdx); //d1 vs d2
+        match_dice(dice[0],dice[3],concentrateIdx!=0?-1:0) //d1 vs o2
+        match_dice(dice[2],dice[1],concentrateIdx!=2?-1:0) //d2 vs o1
+        match_dice(dice[1],dice[3],-1) //o1 vs o2
         
-        try {
-            
-    	    match_dice(dice[0],dice[2],concentrateIdx); //d1 vs d2
-    	    match_dice(dice[0],dice[3],concentrateIdx!=0?-1:0) //d1 vs o2
-    	    match_dice(dice[2],dice[1],concentrateIdx!=2?-1:0) //d2 vs o1
-    	    match_dice(dice[1],dice[3],-1) //o1 vs o2
-    	    
-    	    var style_delegate = "width:40px;height:40px;";
-    	    var style_observer = "width:30px;height:30px;";
-    	    var style_broken = "opacity:0.3;";
-            
-    	    var result = "";
-    	    
-    	    for (var i=0;i<4;i++) {
-                if (dice[i].length > 0) {
-                    result += "<div>";
-                    result += (i%2==0 ? "" : "+");
-                    dice[i].forEach(die => {
-                        result += "<img src='" + die.get('imgsrc') + "' style='";
-                        result += (i%2==0 ? style_delegate :  style_observer);
-                        result += (die.get('name').includes('!') ? style_broken : "") +"'>";
-                    });
-                    result += "</div>";
-                }
-                result += (i==1? "<div style='margin:10px 0px 10px 0px;'>vs</div>":"");
-    	    }
-    	    
-    	    sendChat("",result);            
-            
-        } catch(err) {
-            sendChat("matchDice", "/w gm Error occured while sorting: "+err);
+        var style_delegate = "width:40px;height:40px;";
+        var style_observer = "width:30px;height:30px;";
+        var style_broken = "opacity:0.3;";
+        
+        var result = "";
+        
+        for (var i=0;i<4;i++) {
+            if (dice[i].length > 0) {
+                result += "<div>";
+                result += (i%2==0 ? "" : "+");
+                dice[i].forEach(die => {
+                    result += "<img src='" + die.get('imgsrc') + "' style='";
+                    result += (i%2==0 ? style_delegate :  style_observer);
+                    result += (die.get('name').includes('!') ? style_broken : "") +"'>";
+                });
+                result += "</div>";
+            }
+            result += (i==1? "<div style='margin:10px 0px 10px 0px;'>vs</div>":"");
         }
+        
+        sendChat("",result);
+
+    } catch (err) {
+        sendChat('error','/w GM '+err,null,{noarchive:true});
     }
-}});
+}}});
+// (magicalogia_match_dice.js) *** 코드 종료 ***

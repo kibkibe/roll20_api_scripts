@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 200622
+	* 201101
 
 	[ 소개 ]
 	이 스크립트에는 Roll20에서 ORPG를 진행하며 사용할 수 있는 2가지 기능이 포함되어 있습니다.
@@ -25,15 +25,21 @@
 	   외부링크는 동작하지 않으니 주의하세요.
 	
 */
+// (get_set_img_url.js) *** 코드 시작 ***
 on("chat:message", function(msg)
 {
 if (msg.type == "api"){
-    if (msg.content.indexOf("!add") === 0) {
-	    var tok = getObj("graphic", msg.selected[0]._id);
-	    sendChat(msg.who,"/w gm "+tok.get('imgsrc'));
-	} else if (msg.content.indexOf("!replace ") === 0) {
-	    var tok = getObj("graphic", msg.selected[0]._id);
-	    tok.set('imgsrc',msg.content.substring(9).replace("max","thumb"));
+	try {
+		if (msg.content.indexOf("!add") === 0) {
+			var tok = getObj("graphic", msg.selected[0]._id);
+			sendChat(msg.who,"/w gm "+tok.get('imgsrc'));
+		} else if (msg.content.indexOf("!replace ") === 0) {
+			var tok = getObj("graphic", msg.selected[0]._id);
+			tok.set('imgsrc',msg.content.substring(9).replace("max","thumb").replace("med","thumb"));
+		}
+	} catch(err){
+		sendchat("error","/w gm "+err,null,{noarchive:true});
 	}
 }
 });
+// (get_set_img_url.js) *** 코드 종료 ***

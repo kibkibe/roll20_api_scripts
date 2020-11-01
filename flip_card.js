@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 200716
+	* 201101
     
 	[ 소개 ]
 	이 스크립트는 Roll20에서 ORPG를 진행하며 카드 기능을 이용할 때
@@ -17,15 +17,21 @@
 	- 명령어를 채팅창에 바로 입력하기 보다는 매크로로 만들어서 플레이어에게도 권한을 공개하는 것을 추천합니다.
     
 */
+// (flip_card.js) *** 코드 시작 ***
 on("chat:message", function(msg)
 {
 if (msg.type == "api"){
     if (msg.content.indexOf("!flip") === 0 && msg.selected) {
-        for (var i=0;i<msg.selected.length;i++) {
-            var obj = getObj("graphic", msg.selected[i]._id);
-            var side = obj.get('currentSide')===0?1:0;
-            var img = obj.get('sides').split('|')[side].replace('%3A',':').replace('%3F','?').replace('max','thumb');
-            obj.set({currentSide:side,imgsrc:img});
-        }
+		try {
+			for (var i=0;i<msg.selected.length;i++) {
+				var obj = getObj("graphic", msg.selected[i]._id);
+				var side = obj.get('currentSide')===0?1:0;
+				var img = obj.get('sides').split('|')[side].replace('%3A',':').replace('%3F','?').replace('max','thumb');
+				obj.set({currentSide:side,imgsrc:img});
+			}
+		} catch(err){
+			sendchat("error","/w gm "+err,null,{noarchive:true});
+		}
     }
 }});
+// (flip_card.js) *** 코드 종료 ***

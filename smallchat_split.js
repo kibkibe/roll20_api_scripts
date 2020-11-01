@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 201028
+	* 201101
     
 	[ 소개 ]
     
@@ -30,17 +30,14 @@
 	2-2. 'chat_bg' 토큰을 설정하지 않았을 경우 실시간 채팅용 핸드아웃이 자동으로 생성되었는지 확인합니다.
 	3. 저널에 잡담로그를 저장하는 핸드아웃이 자동으로 생성되었는지 확인합니다.
 */
-// 코드 시작
-// 코드 고유구문 1 시작
+// (smallchat_split.js) *** 코드 시작 ***
 on('ready', function() {
     if (!state.smallchatlog) state.smallchatlog = [];
     if (!state.smallchatonair) state.smallchatonair = [];
 });
-// 코드 고유구문 1 끝
 on("chat:message", function(msg)
 {
 if (msg.type == "api"){
-	// 코드 고유구문 2 시작
     if (msg.content.indexOf("! ") === 0) {
         try {
         // option
@@ -139,6 +136,7 @@ if (msg.type == "api"){
                 split.splice(1,1);
             }
             box.set({text:split.join('\n'),left:bg.get('left'),top:bg.get('top')-font_size});
+            toFront(box);
         }
         var d = new Date();
         var tz = d.getTime() + (d.getTimezoneOffset() * 60000) + (timezone * 3600000);
@@ -181,10 +179,9 @@ if (msg.type == "api"){
             }
         });
 	} catch (error) {
-		log(error);
+        sendChat('error','/w GM '+err,null,{noarchive:true});
 	}
     }
-	// 코드 고유구문 2 끝
 }
 });
-// 코드 끝
+// (smallchat_split.js) *** 코드 종료 ***

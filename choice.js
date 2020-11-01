@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 2001007
+	* 201101
     
 	[ 소개 ]
     
@@ -22,6 +22,7 @@
 	- 명령어는 대소문자를 모두 지원합니다. 또한 다른 API 스크립트와 다르게 명령어 앞에 !를 사용하지 않습니다.
   
 */
+// (choice.js) *** 코드 시작 ***
 on("chat:message", function(msg)
 {
 if (msg.content.substring(0,7).toLowerCase() == "choice[") {
@@ -32,7 +33,8 @@ if (msg.content.substring(0,7).toLowerCase() == "choice[") {
         if (rand.substring(rand.length-1,rand.length) == ' ') { rand=rand.substring(0,rand.length-1); }
         sendChat("CHOICE","-> "+rand);
     } catch(err){
-        sendchat("error","/w gm "+err);
+        sendchat("error","/w gm "+err,null,{noarchive:true});
     }
 }
 });
+// (choice.js) *** 코드 종료 ***
