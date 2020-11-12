@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 201101
+	* 201112
 
 	[ 소개 ]
     
@@ -18,9 +18,9 @@
 	   또한 스크립트는 덱에 입력한 눈의 숫자를 바탕으로 화면에 놓인 주사위의 눈을 파악할 것입니다.
 
 	준비2. 플롯 영역 설정하기
-	1. roll20 세션방의 전투맵 페이지에서 맵 레이어를 선택합니다.
+	1. roll20 세션방의 전투맵 페이지를 엽니다.
 	2. 임의의 사각형 모양의 토큰을 생성한 뒤 주사위를 플롯하는 좌표에 맞게 사이즈와 위치를 조절해 배치합니다.
-	   (투명한 png 파일을 사용하시는 것도 추천합니다.)
+	   (위치는 맵 레이어가 가장 적당합니다. 투명한 png 파일을 사용하시는 것도 추천합니다.)
 	3. 1팀 대표(일반적으로 PC 마법전 대표)의 플롯영역을 덮는 토큰의 이름을 A_delegate로 설정합니다.
 	4. 2팀 대표(일반적으로 에너미)의 플롯영역을 덮는 토큰의 이름을 B_delegate로 설정합니다.
 	5. 1팀 입회인(일반적으로 PC 입회인)의 플롯영역을 덮는 토큰의 이름을 A_observer로 설정합니다.
@@ -53,17 +53,17 @@ if (msg.type == "api"){
             }
             var objects = findObjs({ _subtype: 'card', layer: 'objects' });
             var areas = [];
-            if (findObjs({ name: 'A_delegate', layer: 'map'}).length > 0) {
-                areas.push(findObjs({ name: 'A_delegate', layer: 'map'}));
+            if (findObjs({ name: 'A_delegate'}).length > 0) {
+                areas.push(findObjs({ name: 'A_delegate'}));
             } else { sendChat("matchDice", "/w gm A_delegate 영역이  없습니다."); return false; }
-            if (findObjs({ name: 'A_observer', layer: 'map'}).length > 0) {
-                areas.push(findObjs({ name: 'A_observer', layer: 'map'}));
+            if (findObjs({ name: 'A_observer'}).length > 0) {
+                areas.push(findObjs({ name: 'A_observer'}));
             } else { sendChat("matchDice", "/w gm A_observer 영역이  없습니다."); return false; }
-            if (findObjs({ name: 'B_delegate', layer: 'map'}).length > 0) {
-                areas.push(findObjs({ name: 'B_delegate', layer: 'map'}));
+            if (findObjs({ name: 'B_delegate'}).length > 0) {
+                areas.push(findObjs({ name: 'B_delegate'}));
             } else { sendChat("matchDice", "/w gm B_delegate 영역이  없습니다."); return false; }
-            if (findObjs({ name: 'B_observer', layer: 'map'}).length > 0) {
-                areas.push(findObjs({ name: 'B_observer', layer: 'map'}));
+            if (findObjs({ name: 'B_observer'}).length > 0) {
+                areas.push(findObjs({ name: 'B_observer'}));
             } else { sendChat("matchDice", "/w gm B_observer 영역이  없습니다."); return false; }
             var concentrateIdx = -1;
             var dice = [[],[],[],[]];
