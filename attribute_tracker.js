@@ -91,6 +91,8 @@ let check_list = [
 let check_list = [
     {attr: "Magic_*id*_Charge", name: "Magic_*id*_Name", is_static_name: false, is_static_attr: false},
     {attr: "repeating_acitems_-*id*_Magic_Charge", name: "repeating_acitems_-*id*_Magic_Name", is_static_name: false, is_static_attr: false},
+    {attr: "Magic_*id*_Cost", name: "Magic_*id*_Name", is_static_name: false, is_static_attr: false},
+    {attr: "repeating_acitems_-*id*_Magic_Cost", name: "repeating_acitems_-*id*_Magic_Name", is_static_name: false, is_static_attr: false},
     {attr: "relation_fate_*id*", name: "relation_name_*id*", is_static_name: false, is_static_attr: false},
     {attr: "atk", name: "공격력", is_static_name: true, is_static_attr: true},
     {attr: "def", name: "방어력", is_static_name: true, is_static_attr: true},
