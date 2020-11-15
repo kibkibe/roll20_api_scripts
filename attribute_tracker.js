@@ -3,9 +3,9 @@
 	* https://github.com/kibkibe/roll20_api_scripts
 	* 201112
     
-    [ 소개 ]
-    캐릭터가 시트상에서 스테이터스를 변경하면 해당 내역을 채팅로그에 표시해주는 스크립트입니다.
-    변경사항을 다른 참가자에게 바로바로 알려줌과 동시에 로그에 진행기록을 남길 수 있도록 도와줍니다.
+	[ 소개 ]
+	캐릭터가 시트상에서 스테이터스를 변경하면 해당 내역을 채팅로그에 표시해주는 스크립트입니다.
+	변경사항을 다른 참가자에게 바로바로 알려줌과 동시에 로그에 진행기록을 남길 수 있도록 도와줍니다.
 
 	[ 사용법 ]
   
@@ -126,7 +126,7 @@ function check_attribute(obj,prev) {
     try {
         var check_pl = false;
         let cha = getObj('character',obj.get('_characterid'));
-        if (prior_list.indexOf(cha.get('name')) > -1) {
+        if (prior_list.indexOf(cha.get('name')) > -1 || ignore_list.length == 0) {
             check_pl = true;
         } else if (ignore_list.indexOf(cha.get('name')) > -1) {
             check_pl = false;
