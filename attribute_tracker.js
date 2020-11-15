@@ -110,7 +110,7 @@ let prior_list = [];
 
 // 로그 표시에서 제외할 캐릭터의 이름을 기입합니다.
 // 'GM'을 넣으면 GM에게만 조작권한이 있는 모든 캐릭터를 일괄적으로 제외합니다.
-let ignore_list = ['GM'];
+let ignore_list = [];
     
 on('ready', function() {
     on("add:attribute", function(obj) {
