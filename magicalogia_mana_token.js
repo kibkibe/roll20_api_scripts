@@ -1,7 +1,7 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 201101
+	* 201119
     
 	[ 소개 ]
   	저널에서 캐릭터의 장서 설정을 읽어와 자동으로 마소차지용 토큰을 생성해주는 스크립트입니다.
@@ -19,9 +19,18 @@
   	준비2. Rollable Table에 마소 아이템 생성
   	0. 이 단계는 기존에 마소 차지-소비 세팅을 사용하셨다면 생략할 수 있습니다.
   	단, Rollable Table의 이름만 아래 조건에 맞춰서 설정해주세요.
-  	1. 각 영역의 이름별로 Rollable Table을 생성합니다.
-  	별,짐승,힘,노래,꿈,어둠,전체의 기본 7종이 필요하며 원하시면 그 외의 속성을 추가하실 수 있습니다.
-  	2. 생성한 Rollable Table에 마소 차지 개수를 보여주는 아이콘을 등록합니다.
+      
+    옵션1. 각 영역별로 마소가 차지된 개수마다 이미지를 따로 사용할 경우
+    1-1. 각 영역의 이름별로 Rollable Table을 생성합니다.
+         별,짐승,힘,노래,꿈,어둠,전체의 기본 7종이 필요하며 원하시면 그 외의 속성을 추가하실 수 있습니다.
+         (이름은 '별'이라고 단어 하나만 사용해주세요. '1.별','(마소토큰)별'과 같은 형식이면 인식하지 못합니다.)
+    1-2. 생성한 Rollable Table에 마소 차지 개수를 보여주는 아이콘을 등록합니다.
+      
+    옵션2. 영역별로 마소속성을 보여주는 이미지 1개씩만 사용할 경우
+    2-1. '마소'라는 이름의 Rollable Table을 생성합니다.
+    2-2. 마소 Rollable Table에 각 영역의 이름별로 아이템을 생성합니다.
+         별,짐승,힘,노래,꿈,어둠,전체의 기본 7종이 필요하며 원하시면 그 외의 속성을 추가하실 수 있습니다.
+         (이름은 '별'이라고 단어 하나만 사용해주세요. '1.별','(마소토큰)별'과 같은 형식이면 인식하지 못합니다.)
 
   	준비3. 테스트
   	1. 아래의 형식으로 채팅창에 입력해서 정상적으로 토큰이 생성되는지 확인합니다.
@@ -43,6 +52,13 @@ on("chat:message", function(msg){
     if (msg.type == "api"){
     if (msg.content.indexOf("!장서토큰") === 0) {
         
+        //사용할 마소 속성 리스트를 지정합니다.
+        let area_list = ['별','짐승','힘','노래','꿈','어둠','전체'];
+        //각 영역의 아이콘을 마소 개수에 따라 여러개 사용하는지(false) 속성을 표시하는 아이콘 하나만 사용하는지(true)를 지정합니다.
+        let use_single_icon = false;
+        //마소 아이콘을 속성당 하나만 사용할 경우, 모든 속성의 아이콘을 모아놓은 Rollable table의 이름을 지정합니다.
+        //(이 값은 user_single_icon이 true일 때만 유효합니다.)
+        let collection_name = '마소';
         //기본 아이콘으로 사용할 롤러블 테이블 이름을 지정합니다. (코스트가 없는 경우 등)
         let default_area = '전체';
         //페이지 격자의 가로 or 세로 크기입니다.
@@ -64,11 +80,17 @@ on("chat:message", function(msg){
             } else {
                 cha = cha[0];
             }
-            var page = findObjs({name:page_name, type:'page'});
-            if (page.length < 1) {
-                page = Campaign().get("playerpageid");
+            var page;
+            if (page_name.length == 0) {
+                page = getObj('page', Campaign().get("playerpageid"));
             } else {
-                page = page[0];
+                page = findObjs({name:page_name, type:'page'}, {caseInsensitive: true});
+                if (page.length > 0) {
+                    page = page[0];
+                } else {
+                    sendChat('ERROR','/w GM magicalogia_token_generator.js / 이름이 \'' + page_name + '\' 인 페이지가 없습니다.',null,{noarchive:true});
+                    return;
+                }
             }
                 
             var id_list = {};
@@ -91,7 +113,15 @@ on("chat:message", function(msg){
                         id_list[id].name = attrs[i].get('current');
                         id_list[id].orig_name = item;
                     } else if (item.includes('_Cost')) {
-                        id_list[id].cost = attrs[i].get('current').replace(/[0-9]/g, '').replace('x','').replace('n','');
+                        for (var j=0;j<area_list.length;j++) {
+                            var cost_value = attrs[i].get('current');
+                            if (cost_value.includes(area_list[j])) {
+                                id_list[id].cost = area_list[j];
+                            }
+                        }
+                        if (!id_list[id].cost) {
+                            id_list[id].cost = default_area;
+                        }
                     } else if (item.includes('_Charge')) {
                         id_list[id].charge_id = attrs[i].id;
                     }
@@ -112,17 +142,49 @@ on("chat:message", function(msg){
                         var charge_attr = createObj('attribute', {name:obj.orig_name.replace('_Name','_Charge'),current:0, characterid: cha.id});
                         obj.charge_id = charge_attr.id;
                     }
-                    
-                    var rt = findObjs({name:obj.cost, type:'rollabletable'});
-                    if (rt.length < 1) {
-                        rt = findObjs({name:default_area, type:'rollabletable'});
-                    }
-                    var rt_item = findObjs({type:'tableitem', _rollabletableid: rt[0].id});
+
+                    var rt_item = null;
                     var sides = "";
-                    for (var j=0;j<rt_item.length;j++) {
-                        sides += escape(rt_item[j].get('avatar'));
-                        if (j<rt_item.length-1) {
-                            sides += "|";
+
+                    if (use_single_icon) {
+                        var rt = findObjs({name:collection_name, type:'rollabletable'});
+                        if (rt.length < 1) {
+                            sendChat('ERROR','/w GM magicalogia_token_generator.js / 이름이 \'' + collection_name + '\' 인 Rollable Table이 없습니다.',null,{noarchive:true});
+                            return;
+                        }
+                        rt_item = findObjs({type:'tableitem', _rollabletableid: rt[0].id, name: obj.cost});
+                        if (rt_item.length < 1) {
+                            rt_item = findObjs({type:'tableitem', _rollabletableid: rt[0].id, name: default_area});
+                            if (rt_item.length < 1) {
+                                if (obj.cost) {
+                                    sendChat('ERROR','/w GM magicalogia_token_generator.js / 이름이 \'' + obj.cost + '\'이거나 \'' + default_area + '\' 인 item이 '+ collection_name +' Rollable table 안에 없습니다.',null,{noarchive:true});
+                                } else {
+                                    sendChat('ERROR','/w GM magicalogia_token_generator.js / 기본으로 사용할 \'' + default_area + '\' 속성의 item이 \''+ collection_name +'\' Rollable table 안에 없습니다.',null,{noarchive:true});
+                                }
+                                return;
+                            }
+                        }
+
+                    } else {
+                    
+                        var rt = findObjs({name:obj.cost, type:'rollabletable'});
+                        if (rt.length < 1) {
+                            rt = findObjs({name:default_area, type:'rollabletable'});
+                            if (rt.length < 1) {
+                                if (obj.cost) {
+                                    sendChat('ERROR','/w GM magicalogia_token_generator.js / 이름이 \'' + obj.cost + '\'이거나 \'' + default_area + '\'인 Rollable table이 없습니다.',null,{noarchive:true});
+                                } else {
+                                    sendChat('ERROR','/w GM magicalogia_token_generator.js / 기본으로 사용할 \'' + default_area + '\' 속성의 Rollable table이 없습니다.',null,{noarchive:true});
+                                }
+                                return;
+                            }
+                        }
+                        rt_item = findObjs({type:'tableitem', _rollabletableid: rt[0].id});
+                        for (var j=0;j<rt_item.length;j++) {
+                            sides += escape(rt_item[j].get('avatar'));
+                            if (j<rt_item.length-1) {
+                                sides += "|";
+                            }
                         }
                     }
                     

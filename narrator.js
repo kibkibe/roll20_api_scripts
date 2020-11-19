@@ -43,7 +43,6 @@ if (msg.type == "api"){
 							var cha = findObjs({_type: "character", name: arr[1]})[0];
 							if (cha) {
 								as = "character|" + cha.get('_id');
-								log("as1: " + as);
 							} else {
 								as = arr[1];
 							}

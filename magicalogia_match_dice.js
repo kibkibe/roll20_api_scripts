@@ -75,11 +75,9 @@ if (msg.type == "api"){
                 
                 if (model) {
                     var dname = model.get('name');
-                    log(obj);
                     if (dname === "?") {
                         dname = "" + Math.floor( Math.random() * 6 + 1 );
                         var new_model = findObjs({ _type: "card", _deckid: deck.get('_id'), name: dname})[0];
-                        log(new_model);
                         obj.set('imgsrc',new_model.get('avatar').replace('max','thumb').replace('med','thumb'));
                     } else if (flip && obj.get('currentSide')===1) {
                         var img = obj.get('sides').split('|')[0].replace('%3A',':').replace('%3F','?').replace('max','thumb').replace('med','thumb');

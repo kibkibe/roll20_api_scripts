@@ -154,7 +154,6 @@ function check_attribute(obj,prev) {
                         if (split_attr.length == 2 && obj.get('name').startsWith(split_attr[0]) && obj.get('name').endsWith(split_attr[1])) {
                             check = true;
                             item_id = obj.get('name').replace(split_attr[0],'').replace(split_attr[1],'');
-                            log(item_id + " : " + obj.get('name'));
                         }
                     }
                 }
