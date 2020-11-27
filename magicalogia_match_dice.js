@@ -55,16 +55,16 @@ if (msg.type == "api"){
             var areas = [];
             if (findObjs({ name: 'A_delegate'}).length > 0) {
                 areas.push(findObjs({ name: 'A_delegate'}));
-            } else { sendChat("matchDice", "/w gm A_delegate 영역이  없습니다."); return false; }
+            } else { sendChat("matchDice", "/w gm A_delegate 영역이 없습니다."); return false; }
             if (findObjs({ name: 'A_observer'}).length > 0) {
                 areas.push(findObjs({ name: 'A_observer'}));
-            } else { sendChat("matchDice", "/w gm A_observer 영역이  없습니다."); return false; }
+            } else { sendChat("matchDice", "/w gm A_observer 영역이 없습니다."); return false; }
             if (findObjs({ name: 'B_delegate'}).length > 0) {
                 areas.push(findObjs({ name: 'B_delegate'}));
-            } else { sendChat("matchDice", "/w gm B_delegate 영역이  없습니다."); return false; }
+            } else { sendChat("matchDice", "/w gm B_delegate 영역이 없습니다."); return false; }
             if (findObjs({ name: 'B_observer'}).length > 0) {
                 areas.push(findObjs({ name: 'B_observer'}));
-            } else { sendChat("matchDice", "/w gm B_observer 영역이  없습니다."); return false; }
+            } else { sendChat("matchDice", "/w gm B_observer 영역이 없습니다."); return false; }
             var concentrateIdx = -1;
             var dice = [[],[],[],[]];
             var flip = msg.content.includes('flip');
