@@ -313,13 +313,4 @@ on("chat:message", function(msg){
     }
 }
 });
-
-on("chat:message", function(msg){
-    if (msg.type == "api"){
-        if (msg.content.indexOf("!test") === 0) {
-            var token = getObj("graphic", msg.selected[0]._id);
-            token.set({bar1_max:"", showplayers_bar1: false});
-        }
-    }
-});
 // (magicalogia_mana_token.js) *** 201210 *** 코드 종료 ***
