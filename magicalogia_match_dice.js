@@ -78,13 +78,15 @@ if (msg.type == "api"){
                         var img = obj.get('sides').split('|')[0].replace('%3A',':').replace('%3F','?').replace('max','thumb').replace('med','thumb');
                         obj.set({currentSide:0,imgsrc:img});
                     }
-                    if (dname === "?" && obj.get('name') == "") {
+                    if (dname === "?" && obj.get('name') == "" && obj.get('currentSide')===0) {
                         dname = "" + Math.floor( Math.random() * 6 + 1 );
                         var new_model = findObjs({ _type: "card", _deckid: deck.get('_id'), name: dname})[0];
                         obj.set("imgsrc",new_model.get('avatar').replace('max','thumb').replace('med','thumb'));
                     } 
                     if (obj.get('currentSide')===0) {
-                        obj.set('name', dname);
+                        if (dname != "?") {
+                            obj.set('name', dname);
+                        }
                         var left = obj.get('left')+0;
                         var top = obj.get('top')+0;
                         var width = obj.get('width')+0;
@@ -113,8 +115,8 @@ if (msg.type == "api"){
                 }
         }
 
-        if (dice.length < 1) {
-            sendChat('error','/w GM 플롯 영역 내에 공개된 다이스가 없습니다.',null,{noarchive:true});
+        if (dice[0].length < 1 && dice[3].length < 1) {
+            sendChat('error','/w GM 대표 플롯 영역 내에 공개된 다이스가 없습니다.',null,{noarchive:true});
             return;
         }
             
