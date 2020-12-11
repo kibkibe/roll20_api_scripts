@@ -75,40 +75,48 @@ if (msg.type == "api"){
                 
                 if (model) {
                     var dname = model.get('name');
-                    if (dname === "?") {
-                        dname = "" + Math.floor( Math.random() * 6 + 1 );
-                        var new_model = findObjs({ _type: "card", _deckid: deck.get('_id'), name: dname})[0];
-                        obj.set('imgsrc',new_model.get('avatar').replace('max','thumb').replace('med','thumb'));
-                    } else if (flip && obj.get('currentSide')===1) {
+                    if (flip && obj.get('currentSide')===1) {
                         var img = obj.get('sides').split('|')[0].replace('%3A',':').replace('%3F','?').replace('max','thumb').replace('med','thumb');
                         obj.set({currentSide:0,imgsrc:img});
                     }
-                    obj.set('name', dname);
-                    var left = obj.get('left')+0;
-                    var top = obj.get('top')+0;
-                    var width = obj.get('width')+0;
-                    var height = obj.get('height')+0;
-                    var stop = false;
-                    for (var z=0;z<areas.length;z++) {
-                        for(var x=0;x<areas[z].length;x++) {
-                            var area = areas[z][x];
-                            if (area.get('left')-area.get('width')/2<=left-width/2 &&
-                            area.get('top')-area.get('height')/2<=top-height/2 &&
-                            area.get('top')+area.get('height')/2 >= top+height/2 &&
-                            area.get('left')+area.get('width')/2 >= left+width/2) {
-                                if (obj.get('name') === '0') {
-                                    concentrateIdx = z;
+                    if (dname === "?" && obj.get('name') == "") {
+                        dname = "" + Math.floor( Math.random() * 6 + 1 );
+                        var new_model = findObjs({ _type: "card", _deckid: deck.get('_id'), name: dname})[0];
+                        obj.set("imgsrc",new_model.get('avatar').replace('max','thumb').replace('med','thumb'));
+                    } 
+                    if (obj.get('currentSide')===0) {
+                        obj.set('name', dname);
+                        var left = obj.get('left')+0;
+                        var top = obj.get('top')+0;
+                        var width = obj.get('width')+0;
+                        var height = obj.get('height')+0;
+                        var stop = false;
+                        for (var z=0;z<areas.length;z++) {
+                            for(var x=0;x<areas[z].length;x++) {
+                                var area = areas[z][x];
+                                if (area.get('left')-area.get('width')/2<=left-width/2 &&
+                                area.get('top')-area.get('height')/2<=top-height/2 &&
+                                area.get('top')+area.get('height')/2 >= top+height/2 &&
+                                area.get('left')+area.get('width')/2 >= left+width/2) {
+                                    if (obj.get('name') === '0') {
+                                        concentrateIdx = z;
+                                    }
+                                    dice[z].push(obj);
+                                    stop = true;
+                                    break;
                                 }
-                                dice[z].push(obj);
-                                stop = true;
+                            }
+                            if (stop) {
                                 break;
                             }
                         }
-                        if (stop) {
-                            break;
-                        }
                     }
                 }
+        }
+
+        if (dice.length < 1) {
+            sendChat('error','/w GM 플롯 영역 내에 공개된 다이스가 없습니다.',null,{noarchive:true});
+            return;
         }
             
         for (var s=0;s<dice.length;s++) {
