@@ -1,7 +1,6 @@
 /*
 	* by 양천일염
 	* https://github.com/kibkibe/roll20_api_scripts
-	* 201112
 
 	[ 소개 ]
     
@@ -40,7 +39,7 @@
 	- 채팅창에 명령어를 모두 입력하는 것이 불편하다면 매크로를 이용하시는 것도 추천합니다.
 	- '!match_dice flip'과 같이 명령어에 'flip'을 추가하시면 뒷면이 보이도록 놓인 카드도 앞면으로 뒤집은 후에 매칭합니다. 
 */
-// (magicalogia_match_dice.js) *** 코드 시작 ***
+// (magicalogia_match_dice.js) *** 201211 *** 코드 시작 ***
 on("chat:message", function(msg)
 {
 if (msg.type == "api"){
@@ -178,4 +177,4 @@ if (msg.type == "api"){
         sendChat('error','/w GM '+err,null,{noarchive:true});
     }
 }}});
-// (magicalogia_match_dice.js) *** 코드 종료 ***
+// (magicalogia_match_dice.js) *** 201211 *** 코드 종료 ***
