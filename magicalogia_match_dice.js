@@ -8,6 +8,9 @@ on("ready", function() {
                 let model = findObjs({ _type: "card", _deckid: deck.get('_id'), _id:obj.get('_cardid')})[0];
                 if (model) {
                     let areas = getPlotAreas();
+                    if (!areas) {
+                        return;
+                    }
                     let obj_coord = {
                         left:obj.get('left')-(obj.get('width')/2),
                         top:obj.get('top')-(obj.get('height')/2),
