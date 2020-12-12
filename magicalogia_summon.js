@@ -39,7 +39,6 @@ if (msg.type == "api"){
 									controlledby:"all",
 									bar2_value: block?parseInt(block):null,
 									bar2_max: block?parseInt(block):null,
-										//페이지의 이름(name: 'spellbound')은 변경하셔도 좋습니다. 사용할 세션방의 마법전 페이지 이름과 일치시켜 주세요.
 									pageid: Campaign().get("playerpageid"),
 									imgsrc: characterImage,
 									layer: "objects"

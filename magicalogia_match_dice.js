@@ -102,7 +102,7 @@ if (msg.type == "api"){
                 sendChat("matchDice", "/w gm Dice 덱이 Card에 없습니다.");
                 return false;
             }
-            let objects = findObjs({ _type: 'graphic', _subtype: 'card', layer: 'objects'});
+            let objects = findObjs({ _type: 'graphic', _subtype: 'card', layer: 'objects', _pageid: Campaign().get("playerpageid")});
             let areas = getPlotAreas();
             let concentrateIdx = -1;
             let dice = [[],[],[],[]];
