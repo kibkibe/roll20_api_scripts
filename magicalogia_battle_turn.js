@@ -1,43 +1,5 @@
-/*
-	* by 양천일염
-	* https://github.com/kibkibe/roll20_api_scripts
-	* 201101
-  
-	[ 소개 ]
-	마도서대전 RPG 마기카로기아를 Roll20에서 ORPG로 진행할 때
-	토큰을 움직여 마법전의 진행알림을 자동으로 표시하도록 도와주는 스크립트입니다.
-  
-	[ 설치법 ]
-	준비1. 스크립트 적용하기
-	1. roll20 세션방의 대문에 해당하는 페이지에서 [설정]->[API 스크립트]를 선택해 스크립트 수정 페이지로 들어갑니다. (PRO 계정에서만 이 메뉴가 보입니다.)
-	2. New Script에 이 코드들을 복사해 붙여넣고 [Save Script]를 눌러 저장합니다.
-	3. 페이지 아래쪽의 API Output Console에 에러 메시지가 표시되지 않는다면 정상적으로 적용된 것입니다.
-  
-	준비2. 토큰 생성하기
-	1. 'turn_marker' 라는 이름의 토큰을 생성합니다.
-	   이 토큰을 움직여서 마법전의 진행알림의 표시합니다.
-	2. 'turn_marker' 토큰의 설정창을 열고 첫번째 bar의 숫자를 1로 지정합니다.
-	   이 숫자가 마법전 라운드 수의 카운터가 됩니다.
-	(마법전 종료 시 다음 마법전을 위해 1로 되돌려주세요.)
-	3. 추천: 이 토큰의 bar 표시는 '편집가능시 보임', '위/아래에 겹침'으로 설정하고
-	   GM만 조작할 수 있도록 권한을 세팅하는 것을 추천합니다.
-	
-	준비3. 인식영역 만들기
-	1. '라운드개시','선공소환','후공소환','선공공격','후공공격'을 이름으로 하는 토큰을 페이지의 원하는 위치에 배치하세요.
-	   이 중 어느 영역토큰이 turn_marker 토큰과 좌표가 겹치는지를 바탕으로 현재 마법전 진행순서를 표시합니다.
-	2. 준비를 마쳤습니다. turn_marker 토큰을 움직여서 메시지가 잘 표시되는지를 확인합니다.
-	
-	[ 옵션 ]
-	- 인식영역의 이름과 출력되는 메시지는 바꿀 수 있습니다.
-	  하단 코드의 주석 중 option 이라고 쓰여진 줄을 참조해서 원하는 형식으로 안내문을 설정하세요.
-	- 글자 대신 이미지를 표시하고 싶다면 HTML 태그를 이용하세요.
-	<img src="이미지 주소">
-	- turn_marker와 인식영역이 되는 토큰은 눈에 보이는지의 여부와 관계없이 동작합니다.
-	  투명한 png파일과 표시권한을 이용해 플레이어에게 보이지 않도록 숨길 수도 있고
-	  아예 디자인을 입혀서 스크립트 조작과 진행안내판 역할을 동시에 하는 UI로 구성하셔도 좋겠습니다.
-	
-*/
-// (magicalogia_battle_turn.js) *** 코드 시작 ***
+/* 설치법: https://github.com/kibkibe/roll20_api_scripts/wiki/%5B%EC%84%A4%EC%B9%98%EB%B2%95%5D-magicalogia_battle_turn.js */
+/* (magicalogia_battle_turn.js) 201101 코드 시작 */
 on("change:graphic", function(obj, prev) {
     try {
         if (obj.get('top') === prev.top && obj.get('left') === prev.left) return;
@@ -95,4 +57,4 @@ on("change:graphic", function(obj, prev) {
         sendchat("error","/w gm "+err,null,{noarchive:true});
     }
 });
-// (magicalogia_battle_turn.js) *** 코드 종료 ***
+/* (magicalogia_battle_turn.js) 201101 코드 종료 */
