@@ -78,16 +78,16 @@ function getPlotAreas() {
     var areas = [];
     if (findObjs({ name: 'A_delegate'}).length > 0) {
         areas.push(findObjs({ name: 'A_delegate'}));
-    } else { sendChat("matchDice", "/w gm A_delegate 영역이 없습니다."); return false; }
+    } else { sendChat("matchDice", "/w gm A_delegate 영역이 없습니다.",null,{noarchive:true}); return false; }
     if (findObjs({ name: 'A_observer'}).length > 0) {
         areas.push(findObjs({ name: 'A_observer'}));
-    } else { sendChat("matchDice", "/w gm A_observer 영역이 없습니다."); return false; }
+    } else { sendChat("matchDice", "/w gm A_observer 영역이 없습니다.",null,{noarchive:true}); return false; }
     if (findObjs({ name: 'B_delegate'}).length > 0) {
         areas.push(findObjs({ name: 'B_delegate'}));
-    } else { sendChat("matchDice", "/w gm B_delegate 영역이 없습니다."); return false; }
+    } else { sendChat("matchDice", "/w gm B_delegate 영역이 없습니다.",null,{noarchive:true}); return false; }
     if (findObjs({ name: 'B_observer'}).length > 0) {
         areas.push(findObjs({ name: 'B_observer'}));
-    } else { sendChat("matchDice", "/w gm B_observer 영역이 없습니다."); return false; }
+    } else { sendChat("matchDice", "/w gm B_observer 영역이 없습니다.",null,{noarchive:true}); return false; }
 
     return areas;
 }
@@ -99,7 +99,7 @@ if (msg.type == "api"){
         try {
             let deck = findObjs({ _type: 'deck', name: 'Dice'})[0];
             if (!deck) {
-                sendChat("matchDice", "/w gm Dice 덱이 Card에 없습니다.");
+                sendChat("matchDice", "/w gm Dice 덱이 Card에 없습니다.",null,{noarchive:true});
                 return false;
             }
             let objects = findObjs({ _type: 'graphic', _subtype: 'card', layer: 'objects', _pageid: Campaign().get("playerpageid")});
