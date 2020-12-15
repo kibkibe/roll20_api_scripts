@@ -32,7 +32,7 @@ if (msg.type == "api"){
                 }
                 if (nearest_item.idx != false_value) {
                     sendChat("character|"+characters[nearest_item.idx].get('id'),
-                    msg.content.substring(keyword.length+1, msg.content.length - keyword.length - 1));
+                    msg.content.substring(command.length+ keyword.length+1, msg.content.length));
                 } else {
                     sendChat("as_autofiller.js", "/w gm **" + keyword + "**가 이름에 포함된 NPC가 없습니다.",null,{noarchive:true});
                 }
