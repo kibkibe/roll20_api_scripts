@@ -155,7 +155,7 @@ if (msg.type == "api"){
                 }
         }
 
-        if (dice[0].length < 1 && dice[3].length < 1) {
+        if (dice[0].length < 1 && dice[2].length < 1) {
             sendChat('error','/w GM 대표 플롯 영역 내에 공개된 다이스가 없습니다.',null,{noarchive:true});
             return;
         }
