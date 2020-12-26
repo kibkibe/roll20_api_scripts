@@ -24,7 +24,7 @@
 	   외부링크는 동작하지 않으니 주의하세요.
 	
 */
-/* (get_set_img_url.js) 201101 코드 시작 */
+/* (get_set_img_url.js) 201226 코드 시작 */
 on("chat:message", function(msg)
 {
 if (msg.type == "api"){
@@ -42,8 +42,8 @@ if (msg.type == "api"){
 			}
 		}
 	} catch(err){
-		sendchat("error","/w gm "+err,null,{noarchive:true});
+		sendChat("error","/w gm "+err,null,{noarchive:true});
 	}
 }
 });
-/* (get_set_img_url.js) 201101 코드 종료 */
+/* (get_set_img_url.js) 201226 코드 종료 */

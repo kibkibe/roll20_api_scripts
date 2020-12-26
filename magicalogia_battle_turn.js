@@ -1,5 +1,5 @@
 /* 설치법: https://github.com/kibkibe/roll20_api_scripts/wiki/%5B%EC%84%A4%EC%B9%98%EB%B2%95%5D-magicalogia_battle_turn.js */
-/* (magicalogia_battle_turn.js) 201101 코드 시작 */
+/* (magicalogia_battle_turn.js) 201226 코드 시작 */
 on("change:graphic", function(obj, prev) {
     try {
         if (obj.get('top') === prev.top && obj.get('left') === prev.left) return;
@@ -10,8 +10,9 @@ on("change:graphic", function(obj, prev) {
             var names = ['라운드개시','선공소환','후공소환','선공공격','후공공격'];
             
             for (var i=0;i<names.length;i++) {
-                if (findObjs({ name: names[i]}).length > 0) {
-                    areas.push(findObjs({ name: names[i]})[0]);
+                let objs = findObjs({name: names[i], _type: 'graphic'});
+                if (objs.length > 0) {
+                    areas.push(objs);
                 } else { sendChat("turnover", "/w gm "+ names[i] + " 영역이 없습니다."); return; }
             }
             
@@ -20,15 +21,22 @@ on("change:graphic", function(obj, prev) {
             var top = obj.get('top');
             var width = obj.get('width');
             var height = obj.get('height');
+            // 마커토큰이 영역토큰과 약간 어긋나도 인식되도록 오차범위(픽셀단위)를 설정합니다. 숫자가 작을수록 정확하고 엄격하게 판정합니다.
+            let margin = 10;
             
             for (var z=0;z<areas.length;z++) {
-                var area = areas[z];
-                if (area.get('left')-area.get('width')/2<=left-width/2 &&
-                    area.get('top')-area.get('height')/2<=top-height/2 &&
-                    area.get('top')+area.get('height')/2 >= top+height/2 &&
-                    area.get('left')+area.get('width')/2 >= left+width/2) {
-                        turn = z;
-                        break;
+                for (var j=0;j<areas[z].length;j++) {
+                    var area = areas[z][j];
+                    if (area.get('left')-area.get('width')/2 -margin <=left-width/2 &&
+                        area.get('top')-area.get('height')/2 -margin<=top-height/2 &&
+                        area.get('top')+area.get('height')/2 +margin>= top+height/2 &&
+                        area.get('left')+area.get('width')/2 +margin>= left+width/2) {
+                            turn = z;
+                            break;
+                    }
+                }
+                if (turn != -1) {
+                    break;
                 }
             }
             
@@ -54,7 +62,7 @@ on("change:graphic", function(obj, prev) {
             }
         }
     } catch(err){
-        sendchat("error","/w gm "+err,null,{noarchive:true});
+        sendChat("error","/w gm "+err,null,{noarchive:true});
     }
 });
-/* (magicalogia_battle_turn.js) 201101 코드 종료 */
+/* (magicalogia_battle_turn.js) 201226 코드 종료 */

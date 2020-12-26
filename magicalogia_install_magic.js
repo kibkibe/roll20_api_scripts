@@ -1,5 +1,5 @@
 /* 설치법: https://github.com/kibkibe/roll20_api_scripts/wiki/%5B%EC%84%A4%EC%B9%98%EB%B2%95%5D-magicalogia_install_magic.js */
-/* (magicalogia_install_magic.js) 201101 코드 시작 */
+/* (magicalogia_install_magic.js) 201226 코드 시작 */
 on("chat:message", function(msg)
 {
 if (msg.type == "api"){
@@ -84,9 +84,9 @@ if (msg.content.indexOf("!장서 ") === 0) {
             sendChat("error", "/w gm 토큰이 선택되지 않았습니다.",null,{noarchive:true});
     	}
     } catch(err){
-        sendchat("error","/w gm "+err,null,{noarchive:true});
+        sendChat("error","/w gm "+err,null,{noarchive:true});
     }
     }
 }
 });
-/* (magicalogia_install_magic.js) 201101 코드 종료 */
+/* (magicalogia_install_magic.js) 201226 코드 종료 */
