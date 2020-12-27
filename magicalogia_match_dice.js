@@ -1,5 +1,5 @@
 /* 설치법: https://github.com/kibkibe/roll20_api_scripts/wiki/%5B%EC%84%A4%EC%B9%98%EB%B2%95%5D-magicalogia_match_dice.js */
-/* (magicalogia_match_dice.js) 201212 코드 시작 */
+/* (magicalogia_match_dice.js) 201227 코드 시작 */
 on("ready", function() {
     on("add:graphic", function(obj) {
         try {
@@ -220,4 +220,4 @@ if (msg.type == "api"){
         sendChat('error','/w GM '+err,null,{noarchive:true});
     }
 }}});
-/* (magicalogia_match_dice.js) 201211 코드 종료 */
+/* (magicalogia_match_dice.js) 201227 코드 종료 */
