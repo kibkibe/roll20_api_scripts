@@ -131,14 +131,15 @@ if (msg.type == "api"){
                         let top = obj.get('top')+0;
                         let width = obj.get('width')+0;
                         let height = obj.get('height')+0;
+                        let margin = 10;
                         let stop = false;
                         for (var z=0;z<areas.length;z++) {
                             for(var x=0;x<areas[z].length;x++) {
                                 let area = areas[z][x];
-                                if (area.get('left')-area.get('width')/2<=left-width/2 &&
-                                area.get('top')-area.get('height')/2<=top-height/2 &&
-                                area.get('top')+area.get('height')/2 >= top+height/2 &&
-                                area.get('left')+area.get('width')/2 >= left+width/2) {
+                                if (area.get('left')-area.get('width')/2-margin<=left-width/2 &&
+                                area.get('top')-area.get('height')/2-margin<=top-height/2 &&
+                                area.get('top')+area.get('height')/2 +margin>= top+height/2 &&
+                                area.get('left')+area.get('width')/2 +margin>= left+width/2) {
                                     if (obj.get('name') === '0') {
                                         concentrateIdx = z;
                                     }
