@@ -40,6 +40,18 @@ if (msg.type == "api"){
 			    var tok = getObj("graphic", msg.selected[i]._id);
 		        log(tok);
 			}
+		} else if (msg.content.indexOf("!batch") === 0 && msg.selected.length > 0) {
+			let highest = msg.selected[0];
+			for (var i=0;i<msg.selected.length;i++) {
+				var tok = getObj("graphic", msg.selected[i]._id);
+				if (highest.get('top') > tok.get('top')) {
+					highest = tok;
+				}
+			}
+			for (var i=0;i<msg.selected.length;i++) {
+				var tok = getObj("graphic", msg.selected[i]._id);
+				tok.set("imgsrc", highest.get('imgsrc').replace("max","thumb").replace("med","thumb"));
+			}
 		}
 	} catch(err){
 		sendChat("error","/w gm "+err,null,{noarchive:true});
