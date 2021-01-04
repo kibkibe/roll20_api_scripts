@@ -40,3 +40,8 @@
 
 
 **아니오.** 토큰의 제작을 위해 사용한 상용소스는 제가 '개인적 이용 및 비영리적 최종산출물 목적'으로 구매하여 라이센스를 취득한 것이기에 이 토큰을 재가공하시면 개인적인 범위에서만 사용하시더라도 해당 상용소스의 라이센스를 위반하게 됩니다. 토큰에 쓰인 이미지 리소스를 사용하기 원하신다면 FAQ 상단의 원본 소스의 링크를 이용하시기 바랍니다.
+
+
+# Designed By
+양천일염/Yangsalt @kibkibe_trpg
+https://github.com/kibkibe/roll20_api_scripts/edit/master/token_offensive_madness
