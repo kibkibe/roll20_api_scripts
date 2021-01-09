@@ -98,7 +98,7 @@
 - `name_font_color`: 캐릭터 이름의 글씨색을 설정합니다.
 - `dialogue_font_size`: 대사 내용이 표시되는 텍스트 박스의 폰트 사이즈를 설정합니다.
 - `dialogue_font_color`: 대사 내용의 글씨색을 설정합니다.
-- `desc_font_size`: /desc나 /em이 표시되는 텍스트 박스의 폰트 사이즈를 설정합니다.
+- `desc_font_size`: /desc나 /em으로 표시되는 강조된 텍스트 박스의 폰트 사이즈를 설정합니다.
 - `desc_font_color`: /desc, /em의 글씨색을 설정합니다.
 #### 엑스트라 관련
 - `show_extra_standing`: /as를 이용해 저널에 없는 캐릭터로 채팅할 경우 엑스트라 전용 스탠딩을 표시할지 (true) 스탠딩을 생략할지(false) 설정합니다. true일 경우 `extra_name`에 설정한 이름에 따라 엑스트라용 스탠딩을 가져옵니다.
