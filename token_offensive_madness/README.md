@@ -3,6 +3,10 @@
 ![tokens without nametag sample image](https://github.com/kibkibe/roll20_api_scripts/blob/master/token_offensive_madness/brochure_nonamed.png)
 
 
+**Offensive Madness**는 마기카로기아의 ORPG 플레이를 위한 원형토큰입니다.
+
+[[ Download Link ]](https://github.com/kibkibe/roll20_api_scripts/raw/master/token_offensive_madness/token_offensive_madness_by_yangsalt.zip)
+
 
 
 
@@ -39,7 +43,7 @@
 - **재가공하여 개인적으로만 사용해도 되나요?**
 
 
-**아니오.** 토큰의 제작을 위해 사용한 상용소스는 제가 '개인적 이용 및 비영리적 최종산출물 목적'으로 구매하여 라이센스를 취득한 것이기에 이 토큰을 재가공하시면 개인적인 범위에서만 사용하시더라도 해당 상용소스의 라이센스를 위반하게 됩니다. 토큰에 쓰인 이미지 리소스를 사용하기 원하신다면 FAQ 상단의 원본 소스의 링크를 이용하시기 바랍니다.
+**아니오.** 토큰의 제작을 위해 사용한 상용소스는 제가 '개인적 이용 및 비영리적 최종산출물 목적'으로 구매하여 라이센스를 취득한 것입니다. 따라서 재가공물의 용도가 개인적인 범위더라도 여기에 사용된 이미지의 라이센스를 별도로 구매하지 않으셨다면 이 토큰을 가공하기 위해 내부의 데이터를 이용하는 과정에서 해당 상용소스의 라이센스를 위반하게 됩니다. 토큰에 쓰인 이미지 리소스를 사용하기 원하신다면 FAQ 상단의 원본 소스의 링크를 이용하시기 바랍니다.
 
 
 # Designed By
