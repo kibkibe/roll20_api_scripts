@@ -9,7 +9,7 @@
 4. [Save Script]를 눌러 저장합니다. 페이지 아래쪽의 API Output Console에 에러 메시지가 표시되지 않는다면 정상적으로 적용된 것입니다.
 
 #### 준비2. 요소 배치 -필수 토큰 생성하기
-![](https://github.com/kibkibe/roll20_api_scripts/blob/master/wiki_image/vd/layout_1.png)
+![](https://github.com/kibkibe/roll20_api_scripts/blob/master/wiki_image/vd/layout_1.jpg)
 ##### 그림1) 토큰의 이름 설정
 이 스크립트에서는 `vd_area`, `vd_panel`, `vd_name`, `vd_dialogue`를 각각 이름으로 하는 총 4개의 토큰을 필요로 합니다.
 각 토큰의 용도와 배치해야 할 레이어는 아래와 같습니다.
