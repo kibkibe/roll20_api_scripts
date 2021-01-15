@@ -157,7 +157,8 @@ if (msg.type == "api"){
         }
 
         if (dice[0].length < 1 && dice[2].length < 1) {
-            sendChat('error','/w GM 대표 플롯 영역 내에 공개된 다이스가 없습니다.',null,{noarchive:true});
+            sendChat('error','/w GM 대표 플롯 영역 내에 공개된 다이스가 없습니다. 현재 다이스 플롯상태: 대표A:'
+                     +dice[0].length+"개/입회A:"+dice[1].length+"개/대표B:"+dice[2].length+"개/입회B:"+dice[3].length,null,{noarchive:true});
             return;
         }
             
